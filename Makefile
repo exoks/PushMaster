@@ -6,13 +6,13 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2022/12/17 18:08:56 by oezzaou          ###   ########.fr        #
+#    Updated: 2022/12/19 18:44:54 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
-SRC := push_swap.c
+SRC := push_swap.c push_swap_utils.c
 LIB := libft/
-INC := -I. -I$(LIB)
+INC := -Ipush_swap.h -I$(LIB)
 CC := gcc
 RM := rm -rf
 CFLAGS := -Wall -Wextra -Werror

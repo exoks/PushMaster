@@ -6,58 +6,90 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/17 18:53:21 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/19 19:44:20 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ft_elem_count(char **av);
-int	*ft_extract_elem(char **av, int count);
-
 int	main(int ac, char **av)
 {
-	int	count;
-	int	*elem;
+	t_stack	a;
+	t_stack	b;
 
-	(void)ac;
-	count = ft_elem_count(av);
-	elem = ft_extract_elem(av, count);
-	if (!elem)
-		return (0);
+	if (ac == 1)
+		return (EXIT_FAILURE);
+	if (!ft_creat_stacks(ac, &av[1], &a, &b))
+		return (ft_putendl_fd("Error", STD_ERROR), 0);
+	ft_sa_sb(&a);
+	int	i = ft_pope(&a);
+	while (i)
+	{
+		printf("-> %d\n", i);
+		i = ft_pope(&a);
+	}
 	return (0);
 }
 
-int	*ft_extract_elem(char **av, int count)
+void	ft_sa_sb(t_stack *stack)
 {
-	int		*elem;
-	char	**tab;
+	int	tmp;
+	int	tmp2;
 
-	elem = (int *) malloc(sizeof(int) * count);
-	if (!elem)
-		return (0);
-	while (*av)
-	{
-		tab = ft_split(av, ' ');
-		while (
-	}
+	if (stack->top <= 0)
+		return ;
+	tmp = ft_pope(stack);
+	tmp2 = ft_pope(stack);
+	ft_push(stack, tmp);
+	ft_push(stack, tmp2);
 }
 
-int	ft_elem_count(char **av, int *elem)
+void	ft_ss(t_stack *a, t_stack *b)
 {
-	int	count;
-	int	i;
-	char	**elem;
+	ft_sa_sb(a);
+	ft_sa_sb(b);
+}
 
+void	ft_pa_pb(t_stack *f, t_stack *s)
+{
+	if (s->top < 0)
+		return ;
+	ft_push(f, ft_pope(s));
+}
+
+void	ft_ra_rb(t_stack *f, t_stack *s)
+{
+	int	tmp;
+
+	tmp = ft_pope(f);
+	while (ft_pa_pb(b, a))
+}
+
+/*int	*ft_process_input(char **av, int *count, int *arr, int flag)
+{
+	int		i;
+	char	**elem;
+	int		j;
+
+	j = 0;
+	if (flag == FILL)
+		arr = (int *) malloc(sizeof(int) * (*count));
 	while (*(++av))
 	{
 		elem = ft_split(*av, ' ');
-		i = -1;
-		while (elem[++i])
-			count++;
 		i = 0;
 		while (elem[i])
+		{
+			if (flag == COUNT)
+				(*count)++;
+			if (flag == FILL)
+			{
+				arr[j++] = ft_atoi(elem[i]);
+				if (!arr[j - 1] && ft_strlen(elem[i]) > 1)
+					return (ft_putendl_fd("Error \n", 2), 0);
+			}
 			free(elem[i++]);
+		}
 		free(elem);
 	}
-	return (count);
-}
+	return (arr);
+}*/
