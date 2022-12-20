@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/19 19:29:12 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:34:12 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,7 +14,10 @@
 int	ft_pope(t_stack *stack)
 {
 	if (stack->top == -1)
-		exit(EXIT_SUCCESS);
+	{
+		ft_putendl_fd("Stack is Empty", 2);
+		exit(EXIT_FAILURE);
+	}
 	return ((stack->stack)[stack->top--]);
 }
 
@@ -68,13 +71,12 @@ int	*ft_extract_nbrs(char **av, int *count)
 	return (tmp);
 }
 
-int	ft_creat_stacks(int ac, char **av, t_stack *a, t_stack *b)
+int	ft_creat_stacks(int count, char **av, t_stack *a, t_stack *b)
 {
-	int		count;
 	int		i;
 	int		j;
 
-	(void)ac;
+	(void)count;
 	b->stack = ft_extract_nbrs(av, &count);
 	a->stack = (int *) malloc (sizeof(int) * count);
 	if (!a->stack || !b->stack)
@@ -92,5 +94,5 @@ int	ft_creat_stacks(int ac, char **av, t_stack *a, t_stack *b)
 	i = -1;
 	while (++i < count)
 		ft_push(a, (b->stack)[count - i - 1]);
-	return (1);
+	return (count);
 }

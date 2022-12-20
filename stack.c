@@ -30,7 +30,7 @@ t_stack	*ft_lstlast(t_stack *stack)
 	return (0);
 }
 
-t_stack	*ft_push(t_stack	*stack, int elem)
+t_stack	*ft_push(t_stack *stack, int elem)
 {
 	if (stack)
 		(ft_lstlast(stack))->next = ft_lstnew(elem);
