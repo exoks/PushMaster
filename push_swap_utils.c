@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/21 20:05:11 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/22 19:52:08 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -26,7 +26,7 @@ int	ft_push(t_stack *stack, int elem, char *msg)
 	if (stack->n_elems == stack->top)
 		exit(0);
 	(stack->stack)[++(stack->top)] = elem;
-	ft_putendl_fd(msg, 2);
+	ft_putendl_fd(msg, STD_OUT);
 	return (TRUE);
 }
 
