@@ -6,10 +6,12 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/22 19:51:52 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/23 19:54:59 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	ft_rsort_stack(t_stack *a, t_stack *b)
 
 int	ft_is_sorted(t_stack *a)
 {
@@ -29,6 +31,29 @@ int	ft_is_sorted(t_stack *a)
 	return (TRUE);
 }
 
+void	ft_rsort_stack(t_stack *a, t_stack *b)
+{
+	int	tmp0, tmp1;
+
+	while (1)
+	{
+		tmp0 = ft_pope(a);
+		if (a->top == -1)
+		{
+			ft_push(b, tmp0, PB); /*PB*/
+	//		while (b->top != -1 && ft_push(a, ft_pope(b), 0)) /*PA*/
+	//				;
+			break;
+		}
+		tmp1 = ft_pope(a);
+		ft_push(a, tmp1, 0);
+		ft_push(a, tmp0, 0);
+		if (tmp0 > tmp1)
+			ft_swap(a, 0, SA);
+		ft_push(b, ft_pope(a), PB); /*PB*/
+	}
+}
+
 void	ft_sort_stack(t_stack *a, t_stack *b)
 {
 	int	tmp0, tmp1;
@@ -38,9 +63,9 @@ void	ft_sort_stack(t_stack *a, t_stack *b)
 		tmp0 = ft_pope(a);
 		if (a->top == -1)
 		{
-			ft_push(b, tmp0, PB);
-			while (b->top != -1 && ft_push(a, ft_pope(b), PB))
-					;
+			ft_push(b, tmp0, PB); /*PB*/
+	//		while (b->top != -1 && ft_push(a, ft_pope(b), 0)) /*PA*/
+	//				;
 			break;
 		}
 		tmp1 = ft_pope(a);
@@ -48,7 +73,7 @@ void	ft_sort_stack(t_stack *a, t_stack *b)
 		ft_push(a, tmp0, 0);
 		if (tmp0 > tmp1)
 			ft_swap(a, 0, SA);
-		ft_push(b, ft_pope(a), PB);
+		ft_push(b, ft_pope(a), PB); /*PB*/
 	}
 }
 

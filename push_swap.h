@@ -6,28 +6,28 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/22 19:45:42 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/23 17:30:06 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
 # include <stdio.h>
-# define STD_ERROR 1
+# define STD_ERROR 2
 # define STD_OUT 1
-# define TRUE 1
+# define TRUE 2
 # define FALSE 0
-# define SA ":=> sa"
-# define SB ":=> sb"
-# define SS ":=> ss"
-# define PA ":=> pa"
-# define PB ":=> pb"
-# define RA ":=> ra"
-# define RB ":=> rb"
-# define RR ":=> rr"
-# define RRA ":=> rra"
-# define RRB ":=> rrb"
-# define RRR ":=> rrr"
+# define SA "sa"
+# define SB "sb"
+# define SS "ss"
+# define PA "pa"
+# define PB "pb"
+# define RA "ra"
+# define RB "rb"
+# define RR "rr"
+# define RRA "rra"
+# define RRB "rrb"
+# define RRR "rrr"
 
 typedef struct s_stack
 {
