@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   generator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysalmi <ysalmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:52:28 by ysalmi            #+#    #+#             */
-/*   Updated: 2022/11/27 17:23:58 by ysalmi           ###   ########.fr       */
+/*   Updated: 2022/12/23 20:08:01 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,3 @@ int main(int c, char **v)
 		random_arr(atoi(v[1]), atoi(v[2]), atoi(v[3]));
 	return 0;
 }
-/*
-int	main(int c, char **v)
-{
-	char	*s;
-	int		i;
-	int		line;
-
-	ft_printf("%d\n", rand());
-	line = m_atoi(v[1]);
-	i = 0;
-	while (i++ < line - 1)
-	{
-		s = get_next_line(3);
-		free(s);
-	}
-	s = get_next_line(3);
-	push_swap(&s, 1);
-	free(s);
-	return (0);
-}*/

@@ -6,12 +6,12 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/23 19:54:59 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/23 20:12:52 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_rsort_stack(t_stack *a, t_stack *b)
+void	ft_rsort_stack(t_stack *a, t_stack *b);
 
 int	ft_is_sorted(t_stack *a)
 {
@@ -63,7 +63,7 @@ void	ft_sort_stack(t_stack *a, t_stack *b)
 		tmp0 = ft_pope(a);
 		if (a->top == -1)
 		{
-			ft_push(b, tmp0, PB); /*PB*/
+			ft_push(b, tmp0, PA); /*PB*/
 	//		while (b->top != -1 && ft_push(a, ft_pope(b), 0)) /*PA*/
 	//				;
 			break;
