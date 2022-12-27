@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/23 20:10:24 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/25 17:46:53 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -28,6 +28,8 @@
 # define RRA "rra"
 # define RRB "rrb"
 # define RRR "rrr"
+# define MAX 1
+# define MIN 0
 
 typedef struct s_stack
 {
