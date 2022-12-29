@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/27 16:05:03 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/29 20:01:41 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -82,7 +82,7 @@ void	ft_sort_stack(t_stack *a, t_stack *b)
 }
 
 
-/*int	ft_get_limits(t_stack *a, int flag)
+int	ft_get_limits(t_stack *a, int flag)
 {
 	int	tmp;
 	int	i;
@@ -94,96 +94,82 @@ void	ft_sort_stack(t_stack *a, t_stack *b)
 			tmp = a->stack[i];
 	return (tmp);
 }
-*/
+
 // with recursivety
-void	ft_get_limits(t_stack *s, int *limits)
+/*void	ft_get_limits(t_stack *s, int *limits)
 {
 	int	tmp;
 
 	if (s->top == -1)
 		return ;
 	tmp = ft_pope(s);
+	if (tmp < limits[0])
+	{
+		limits[0] = tmp;
+		limits[1] = s->top + 1;
+	}
 	ft_get_limits(s, limits);
 	ft_push(s, tmp, 0);
-	if (tmp > limits[1])
-		limits[1] = tmp;
-	if (tmp < limits[0])
-		limits[0] = tmp;
+}
+*/
+int	ft_get_index(t_stack *s, int nbr)
+{
+	int	tmp;
+
+	tmp = ft_pope(s);
+	if (tmp != nbr)
+		return (1 + ft_get_index(s, nbr));
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-//	int		tmp;
+//	int	limits[2];
+//	int	tmp;
+//	int	pos;
 
 	if (ac == 1)
 		return (EXIT_FAILURE);
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
-	int	limits[2];
-
-	limits[0] = ft_pope(&a);
-	limits[1] = limits[0];
-	ft_push(&a, limits[0], 0);
-	ft_get_limits(&a, &limits[0]);
-	printf("Min :=> %d\n", limits[0]);
-	printf("Max :=> %d\n", limits[1]);
 	// it work only in case of separated args 
-//	ft_print_main_stack(&b, ac - 1);
+//	 ft_print_main_stack(&b, ac - 1);
 
-	
-/**	while (1)
+/******************* (BEST ALGO (until now))*************************/
+/*	limits[0] = ft_pope(&a);
+	limits[1] = limits[0];
+	ft_push(&a, limits[0], 0);	
+	while (1)
 	{
-		
 		tmp = ft_pope(&a);
 		ft_push(&a, tmp, 0);
-		if (tmp == ft_get_limits(&a, MIN))
-			ft_push(&b, ft_pope(&a), PA);
-		else
+		limits[0] = tmp;
+		ft_get_limits(&a, &limits[0]);
+		pos = limits[1];
+		if (tmp == limits[0])
+			ft_push(&b, ft_pope(&a), PB);
+		else if (pos < (a.top / 2))
+			ft_r_rotate(&a, &b, RRA);
+		else if (pos >= (a.top / 2))
 			ft_rotate(&a, &b, RA);
 		if (a.top == -1)
 		{
 			while (b.top > -1)
-				ft_push(&a, ft_pope(&b), PB);
-					break;
+				ft_push(&a, ft_pope(&b), PA);
+			break;
 		}
-	}**/
+	}
+*/
+/*********************************************************************/
 
-	/*	max = ft_get_max(&a);
-	h = max / 2;
-	int	i = a.top;
-	while (1 && i > -1)
+ 	while (!ft_is_sorted(&a))
 	{
-		tmp = ft_pope(&a);
-		ft_push(&a, tmp, 0);
-		if (tmp == max)
-			ft_rotate(&a, &b, RA);
-		else if (tmp <= h)
-			ft_push(&b, ft_pope(&a), PB);
-		else if (tmp > h)
-			ft_rotate(&a, &b, RA);
-		--i;
-//		if (ft_is_sorted(&a))
-//			break;
-		if (i < 0)
-		{
-			while (!ft_is_sorted(&a) || !ft_is_sorted(&b))
-			{
-				if (!ft_is_sorted(&a))
-				{
-					ft_sort_stack(&a, &b);
-					ft_rsort_stack(&a, &b);
-				}
-				if (!ft_is_sorted(&b))
-				{
-					ft_sort_stack(&b, &a);
-					ft_rsort_stack(&b, &a);
-				}
-			}
-		}
-	}*/
-	/******************************** PRINT STACKS ***************************/
+		ft_sort_stack(&a, &b);
+		ft_rsort_stack(&b, &a);
+	}
+/******************************** PRINT STACKS ***************************/
 //	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
 //	ft_print_stack(&a);
 //	printf("========== \033[1;36mSTACK B\033[1;0m ==========\n");

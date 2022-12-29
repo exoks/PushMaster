@@ -6,7 +6,7 @@
 /*   By: ysalmi <ysalmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:52:28 by ysalmi            #+#    #+#             */
-/*   Updated: 2022/12/25 17:59:34 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/29 15:41:31 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	*random_arr(int min, int max, int size)
 	free(pool);
 	return (0);
 }
+
 int main(int c, char **v)
 {
 	(void)v;
