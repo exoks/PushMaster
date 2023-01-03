@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/03 16:15:22 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/03 16:50:35 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -151,19 +151,20 @@ int	main(int ac, char **av)
 	t_stack	a;
 	t_stack	b;
 //	int	limits[2];
-//	int	tmp;
+	int	tmp;
 //	int	pos;
 
 	if (ac == 1)
 		return (EXIT_FAILURE);
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
-//	int	*arr = ft_help_arr(&a);
-//	int	i = -1;
-//	while (++i <= a.top)
-//		printf(" %d ", arr[i]);
+	int	*arr = ft_help_arr(&a);
+	int	i = -1;
+	while (++i <= a.top)
+		printf(" %d ", arr[i]);
+	printf("\n");
 // it work only in case of separated args 
-//	 ft_print_main_stack(&b, ac - 1);
+	 ft_print_main_stack(&b, ac - 1);
 
 /*int	ft_get_index(int nb, t_stack *s)
 {
@@ -178,8 +179,26 @@ int	main(int ac, char **av)
 
 /******************* (update below algo) ****************************/
 
-	printf(" %d ", ft_get_index(&a, 0));
+// FIRST : split by the middle number after it gets sorted
+// second : search for the numbers are < middle and push to b (the sorting is not important)
+// third : i can see if i can work on both stacks at the same time
+// in the stack B I HAVE TO CAMPARE EACH ELEM with next and the last (this method will help me to use : swap or rb rr)
+	int	reference;
 
+	reference = (ft_help_arr(&a))[a.top / 2];
+	printf("\nref :=> %d\n", reference);
+
+	while (1)
+	{
+		tmp = ft_pope(&a);
+		if (tmp <= reference)
+			ft_push(&b, ft_pope(&a), PB);
+		else
+			ft_rotate(&a, &b, RA);
+		if (b.top == a.top)
+			break;
+	}
+		
 /******************* (BEST ALGO (until now))*************************/
 /*	limits[0] = ft_pope(&a);
 	limits[1] = limits[0];
@@ -208,10 +227,10 @@ int	main(int ac, char **av)
 // 	while (!ft_is_sorted(&a))
 //		ft_sort_stack(&a, &b);
 /******************************** PRINT STACKS ***************************/
-//	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
-//	ft_print_stack(&a);
-//	printf("========== \033[1;36mSTACK B\033[1;0m ==========\n");
-//	ft_print_stack(&b);
+	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
+	ft_print_stack(&a);
+	printf("========== \033[1;36mSTACK B\033[1;0m ==========\n");
+	ft_print_stack(&b);
 	return (0);
 }
 
