@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/25 17:46:53 by oezzaou          ###   ########.fr       */
+/*   Updated: 2022/12/30 10:29:49 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -15,7 +15,7 @@
 # include <stdio.h>
 # define STD_ERROR 2
 # define STD_OUT 1
-# define TRUE 2
+# define TRUE 1
 # define FALSE 0
 # define SA "sa"
 # define SB "sb"
