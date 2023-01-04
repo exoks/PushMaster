@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/04 16:36:53 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/04 19:44:51 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -90,19 +90,19 @@ void	ft_rsort_stack(t_stack *a, t_stack *b)
 }*/
 
 // with recursivety
-void	ft_get_limits(t_stack *s, int *limits)
+void	ft_get_limits(t_stack *s, int *limits, int flag)
 {
 	int	tmp;
 
 	if (s->top == -1)
 		return ;
 	tmp = ft_pope(s);
-	if (tmp < limits[0])
+	if ((flag == MIN) * (tmp < limits[0]) + (flag == MAX) * (tmp > limits[0]))
 	{
 		limits[0] = tmp;
 		limits[1] = s->top + 1;
 	}
-	ft_get_limits(s, limits);
+	ft_get_limits(s, limits, flag);
 	ft_push(s, tmp, 0);
 }
 
@@ -166,7 +166,36 @@ int	ft_check_whos_near(t_stack *s, int *arr, int len)
 	}
 	return (-1);
 }
+void	ft_best_algo(t_stack *a, t_stack *b, int flag)
+{
+	int	limits[2];
+	int	tmp;
+	int	pos;
 
+        limits[0] = ft_pope(a);
+ 	limits[1] = limits[0];
+        ft_push(a, limits[0], 0);
+        while (1)
+        {
+                tmp = ft_pope(a);
+                ft_push(a, tmp, 0);
+                limits[0] = tmp;
+                ft_get_limits(a, &limits[0], flag);
+                pos = limits[1];
+                if (tmp == limits[0])
+                        ft_push(b, ft_pope(a), PB);
+                else if (pos < (a->top / 2))
+                        ft_r_rotate(a, b, RRA);
+                else if (pos >= (a->top / 2))
+                        ft_rotate(a, b, RA);
+                if (a->top == -1 || (ft_is_sorted(a) && flag == MIN))
+                {
+                        while (a->top < b->top && flag != MAX)
+                                ft_push(a, ft_pope(b), PA);
+                        break;
+                }
+        }
+}
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -180,9 +209,9 @@ int	main(int ac, char **av)
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
 	
-	ft_print_main_stack(&b, ac - 1);
+//	ft_print_main_stack(&b, ac - 1);
 	
-	//int	*arr = ft_help_arr(&a);
+//	int	*arr = ft_help_arr(&a);
 	/*int	i = -1;
 	while (++i <= a.top)
 		printf(" %d ", arr[i]);
@@ -207,9 +236,9 @@ int	main(int ac, char **av)
 // third : i can see if i can work on both stacks at the same time
 // in the stack B I HAVE TO CAMPARE EACH ELEM with next and the last (this method will help me to use : swap or rb rr)
 	int	reference;
-
+/*88888888888888888888888888888 DONT FORGET TO COUNT THE NUMBER OF OPERATORS 88888888888888888888888888888888888888888*/
 	reference = (ft_help_arr(&a))[a.top / 2];
-	printf("\nref :=> %d\n", reference);
+//	printf("\nref :=> %d\n", reference);
 //	int	len = a.top;
 	while (1)
 	{
@@ -220,22 +249,11 @@ int	main(int ac, char **av)
 		ft_push(&a, tmp1, 0);
 		ft_push(&a, tmp, 0);
 		if (tmp <= reference)
-		{
 			ft_push(&b, ft_pope(&a), PB);
-			int	tmp2, tmp3;
-			tmp2 = ft_pope(&a);
-			tmp3 = ft_pope(&a);
-			ft_push(&a, tmp3, 0);
-			ft_push(&a, tmp2, 0);
-			if (tmp2 == reference)
-				ft_r_rotate(&b, &a, RB);
-			else if (tmp2 < tmp3)
-				ft_swap(&b, 0, SB);
-		}
-		else if (tmp > tmp1 && tmp1 > reference && tmp > reference)
-			ft_swap(&a, 0, SA);
 		else
 			ft_rotate(&a, &b, RA);
+//		else if (tmp > tmp1 && tmp1 > reference && tmp > reference)
+//			ft_swap(&a, 0, SA);
 	//	else
 	//		ft_rotate(&a, &b, RA);
 		/*else if (a.top == b.top || b.top == (a.top - 1))
@@ -249,7 +267,13 @@ int	main(int ac, char **av)
 		else if (tmp > reference && tmp0 <= reference)
 			ft_swap(&a, 0, SA);*/
 		if (b.top == a.top)
+		{
+			ft_best_algo(&a, &b, MIN);
+			//ft_best_algo(&b, &a, MAX);
+			while (b.top > -1)
+				ft_push(&a, ft_pope(&b), PA);
 			break;
+		}
 	}
 		
 /******************* (BEST ALGO (until now))*************************/
@@ -280,10 +304,10 @@ int	main(int ac, char **av)
 // 	while (!ft_is_sorted(&a))
 //		ft_sort_stack(&a, &b);
 /******************************** PRINT STACKS ***************************/
-	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
-	ft_print_stack(&a);
-	printf("========== \033[1;36mSTACK B\033[1;0m ==========\n");
-	ft_print_stack(&b);
+//	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
+//	ft_print_stack(&a);
+//	printf("========== \033[1;36mSTACK B\033[1;0m ==========\n");
+//	ft_print_stack(&b);
 	return (0);
 }
 
