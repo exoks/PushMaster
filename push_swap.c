@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/03 16:50:35 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:36:53 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -146,6 +146,27 @@ int	*ft_help_arr(t_stack *s)
 	return (arr);
 }
 
+int	ft_check_whos_near(t_stack *s, int *arr, int len)
+{
+	int	i;
+	int	j;
+
+	(void) len;
+	i = -1;
+	while (++i <= s->top)
+	{
+		j = -1;
+		while (++j <= (len / 2))
+			if ((s->stack)[s->top - i] == arr[j])
+				return (s->top - i);
+		j = -1;
+		while (++j <= (len / 2))
+			if ((s->stack)[i] == arr[j])
+				return (i);
+	}
+	return (-1);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -158,13 +179,15 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
-	int	*arr = ft_help_arr(&a);
-	int	i = -1;
+	
+	ft_print_main_stack(&b, ac - 1);
+	
+	//int	*arr = ft_help_arr(&a);
+	/*int	i = -1;
 	while (++i <= a.top)
 		printf(" %d ", arr[i]);
-	printf("\n");
+	printf("\n");*/
 // it work only in case of separated args 
-	 ft_print_main_stack(&b, ac - 1);
 
 /*int	ft_get_index(int nb, t_stack *s)
 {
@@ -187,14 +210,44 @@ int	main(int ac, char **av)
 
 	reference = (ft_help_arr(&a))[a.top / 2];
 	printf("\nref :=> %d\n", reference);
-
+//	int	len = a.top;
 	while (1)
 	{
+		// I HAVE TO :=> get the value of the near value
+//		int	index = ft_check_whos_near(&a, arr, len);
 		tmp = ft_pope(&a);
+		int	tmp1 = ft_pope(&a);
+		ft_push(&a, tmp1, 0);
+		ft_push(&a, tmp, 0);
 		if (tmp <= reference)
+		{
 			ft_push(&b, ft_pope(&a), PB);
+			int	tmp2, tmp3;
+			tmp2 = ft_pope(&a);
+			tmp3 = ft_pope(&a);
+			ft_push(&a, tmp3, 0);
+			ft_push(&a, tmp2, 0);
+			if (tmp2 == reference)
+				ft_r_rotate(&b, &a, RB);
+			else if (tmp2 < tmp3)
+				ft_swap(&b, 0, SB);
+		}
+		else if (tmp > tmp1 && tmp1 > reference && tmp > reference)
+			ft_swap(&a, 0, SA);
 		else
 			ft_rotate(&a, &b, RA);
+	//	else
+	//		ft_rotate(&a, &b, RA);
+		/*else if (a.top == b.top || b.top == (a.top - 1))
+			break;
+		else
+			ft_rotate(&a, &b, RA);
+		else if (tmp > reference && tmp0 <= reference && (tmp1 < tmp2 && b.top == 1))
+			ft_swap(&a, &b, SS);
+		else if (tmp > reference && tmp0 > reference && tmp > tmp0)
+			ft_swap(&a, 0, SA);
+		else if (tmp > reference && tmp0 <= reference)
+			ft_swap(&a, 0, SA);*/
 		if (b.top == a.top)
 			break;
 	}
