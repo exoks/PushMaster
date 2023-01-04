@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/22 19:52:08 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/04 22:34:48 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -116,13 +116,15 @@ void	ft_print_main_stack(t_stack *b, int count)
 
 void	ft_print_stack(t_stack *stack)
 {
-	int	i;
+	int	tmp;
+
 	if (stack->top == -1)
-		ft_putendl_fd("Empty Stack", STD_ERROR);
-	while (stack->top > -1)
 	{
-		i = ft_pope(stack);
-		printf("\033[1;32m->\033[1;0m %-25d|\n", i);
+		printf("=============================\n");
+		return ;
 	}
-	printf("=============================\n");
+	tmp = ft_pope(stack);
+	printf("\033[1;32m->\033[1;0m %-25d|\n", tmp);
+	ft_print_stack(stack);
+	ft_push(stack, tmp, 0);
 }

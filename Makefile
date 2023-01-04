@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/04 18:40:42 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/04 22:13:32 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
@@ -33,7 +33,7 @@ $(NAME): $(OBJ)
 #bonus: all
 
 test:
-	@./run.sh -1000 1000 500
+	@./run.sh 0 10 10
 
 clean:
 	make -C $(LIB) clean
