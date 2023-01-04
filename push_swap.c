@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/04 22:39:16 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/04 22:56:02 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -182,12 +182,13 @@ void	ft_best_algo(t_stack *a, t_stack *b, int flag)
 	limits_b[1] = limits_b[0];
         ft_push(a, limits_a[0], 0);
 		ft_push(b, limits_b[0], 0);
+		int	i = -1;
         while (1)
         {
                 tmp_a = ft_pope(a);
                 ft_push(a, tmp_a, 0);
 				tmp_b = ft_pope(b);
-				ft_push(a, tmp_b, 0);
+				ft_push(b, tmp_b, 0);
                 limits_a[0] = tmp_a;
 				limits_b[0] = tmp_b;
                 ft_get_limits(a, &limits_a[0], MIN);
@@ -217,7 +218,8 @@ void	ft_best_algo(t_stack *a, t_stack *b, int flag)
 						ft_rotate(a, b, RA);
 				else if (pos_b >= (b->top / 2))
 						ft_rotate(b, a, RB);
-				break;
+				if (++i == 2)
+					break;
                 /*if (a->top == -1 || (ft_is_sorted(a) && flag == MIN))
                 {
                         while (a->top < b->top && flag != MAX)
