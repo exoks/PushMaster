@@ -49,6 +49,6 @@ else
 	echo -ne "\n\033[1;32m<<<<<<<<<<< SUCCESS >>>>>>>>>>\033[1;0m\n\n"
 fi
 
- rm file
+rm file
 echo -ne "ra :=> $ra\nrb :=> $rb\nrr :=> $rr\npa :=> $pa\npb :=> $pb\nrra :=> $rra\nrrb :=> $rrb\nrrr :=> $rrr\n"
 echo -ne "\033[1;32m   Made By Oussama Ezzaou :)   \033[1;0m\n"
