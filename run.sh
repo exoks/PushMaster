@@ -25,20 +25,21 @@ nbr=`echo "$all" | wc -l`
 ra=`echo "$all" | awk '/^ra$/' | wc -l`
 rb=`echo "$all" | awk '/^rb$/' | wc -l`
 rr=`echo "$all" | awk '/^rr$/' | wc -l`
-pa=`echo "$all" | awk '/^pa$/' | wc -l`
 pb=`echo "$all" | awk '/^pb$/' | wc -l`
+pa=`echo "$all" | awk '/^pa$/' | wc -l`
+sb=`echo "$all" | awk '/^sb$/' | wc -l`
 rra=`echo "$all" | awk '/^rra$/' | wc -l`
 rrb=`echo "$all" | awk '/^rrb$/' | wc -l`
 rrr=`echo "$all" | awk '/^rrr$/' | wc -l`
 
 echo -ne "\n\033[1;36m=>\033[1;0m waiting "
-i=0
-while [ $i -lt 3 ]; do
-	echo -n "."
-	sleep 1
-	i=$(($i + 1))
-done
-echo ""
+#i=0
+#while [ $i -lt 3 ]; do
+#	echo -n "."
+#	sleep 1
+#	i=$(($i + 1))
+#done
+#echo ""
 
 if [ ${nbr} -gt 1500 ]
 then
@@ -50,5 +51,5 @@ else
 fi
 
 rm file
-echo -ne "ra :=> $ra\nrb :=> $rb\nrr :=> $rr\npa :=> $pa\npb :=> $pb\nrra :=> $rra\nrrb :=> $rrb\nrrr :=> $rrr\n"
+echo -ne "sb :=> $sb\nra :=> $ra\nrb :=> $rb\nrr :=> $rr\npa :=> $pa\npb :=> $pb\nrra :=> $rra\nrrb :=> $rrb\nrrr :=> $rrr\n"
 echo -ne "\033[1;32m   Made By Oussama Ezzaou :)   \033[1;0m\n"

@@ -6,12 +6,10 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/05 22:21:39 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/10 01:40:52 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-void	ft_rsort_stack(t_stack *a, t_stack *b);
 
 int	ft_is_sorted(t_stack *a)
 {
@@ -51,43 +49,6 @@ void	ft_rsort_stack(t_stack *a, t_stack *b)
 		ft_push(b, ft_pope(a), PB); //PB
 	}
 }
-//int	ft_get_limits(t_stack *a, int flag);
-
-/*void	ft_sort_stack(t_stack *a, t_stack *b)
-{
-	int	tmp0, tmp1;
-
-	while (1)
-	{
-		tmp0 = ft_pope(a);
-		if (a->top == -1)
-			break;
-		tmp1 = ft_pope(a);
-		ft_push(a, tmp1, 0);
-		ft_push(a, tmp0, 0);
-		if (tmp0 == ft_get_limits(a, MAX) && tmp1 == ft_get_limits(a, MIN))
-			ft_rotate(a, b, RA);
-		else if (tmp0 > tmp1)
-			ft_swap(a, 0, SA);
-		if (ft_is_sorted(a))
-			break;
-		ft_rotate(a, b, RA);
-	}
-}*/
-
-
-/*int	ft_get_limits(t_stack *a, int flag)
-{
-	int	tmp;
-	int	i;
-
-	tmp = a->stack[0];
-	i = -1;
-	while (++i <= a->top)
-		if ((flag == MAX) * (tmp < a->stack[i]) + (flag == MIN) * (tmp > a->stack[i]))
-			tmp = a->stack[i];
-	return (tmp);
-}*/
 
 // with recursivety
 void	ft_get_limits(t_stack *s, int *limits, int flag)
@@ -151,16 +112,15 @@ int	ft_check_whos_near(t_stack *s, int *arr, int len)
 	int	i;
 	int	j;
 
-	(void) len;
 	i = -1;
 	while (++i <= s->top)
 	{
 		j = -1;
-		while (++j <= (len / 2))
+		while (arr[++j] <= len)
 			if ((s->stack)[s->top - i] == arr[j])
 				return (s->top - i);
 		j = -1;
-		while (++j <= (len / 2))
+		while (arr[++j] <= len)
 			if ((s->stack)[i] == arr[j])
 				return (i);
 	}
@@ -169,38 +129,58 @@ int	ft_check_whos_near(t_stack *s, int *arr, int len)
 
 void	ft_best_algo(t_stack *a, t_stack *b, int flag)
 {
-	int	limits_a[2];
-	int	tmp_a;
-	int	pos_a;
+	int	limits[2];
+	int	tmp;
+	int	pos;
+	char	*msg1;
+	char	*msg2;
+	char	*msg3;
 
-    limits_a[0] = ft_pope(a);
- 	limits_a[1] = limits_a[0];
-	ft_push(a, limits_a[0], 0);
-//		int	i = -1;
+	msg1 = PA;
+	msg2 = RRB;
+	msg3 = RB;
+	if (flag == MIN)
+	{
+		msg1 = PB;
+		msg2 = RRA;
+		msg3 = RA;
+	}
+        limits[0] = ft_pope(b);
+ 	limits[1] = limits[0];
+        ft_push(b, limits[0], 0);
         while (1)
         {
-                tmp_a = ft_pope(a);
-                ft_push(a, tmp_a, 0);
-                limits_a[0] = tmp_a;
-                ft_get_limits(a, &limits_a[0], MIN * (flag == MIN) + MAX * (flag == MAX));
-                pos_a = limits_a[1];
-		//		printf("MIN (A) ==> %d\n", limits_a[0]);
-		//		printf("MAX (B) ==> %d\n", limits_b[0]);
-				if (tmp_a == limits_a[0])
-					ft_push(b, ft_pope(a), PB);
-				else if (pos_a < (a->top / 2))
-					ft_r_rotate(a, b, RRA);
-				else 
-					ft_rotate(a, b, RA);
-				if (a->top  == -1 || (b->top == -1 && flag == MIN))
-				{
-					if (flag == MAX)
-						while (b->top != a->top)
-							ft_push(a, ft_pope(b), PA);
-					break;
-				}
-		}
+                tmp = ft_pope(b);
+                ft_push(b, tmp, 0);
+                limits[0] = tmp;
+                ft_get_limits(b, &limits[0], flag);
+                pos = limits[1];
+                if (tmp == limits[0])
+                        ft_push(a, ft_pope(b), msg1);
+                else if (pos < (b->top / 2))
+                        ft_r_rotate(b, a, msg2);
+                else
+                      ft_rotate(b, a, msg3);
+                if (b->top == -1/* || (ft_is_sorted(a) && flag == MIN)*/)
+                {
+                       // while (a->top < b->top && flag != MAX)
+                      //          ft_push(a, ft_pope(b), PA);
+                        break;
+                }
+        }
 }
+
+int     ft_is_exist(t_stack *s, int reference)
+{
+        int     i;
+
+        i = -1;
+        while (++i <= s->top)
+                if ((s->stack)[i] <= reference)
+                        return (1);
+        return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -223,89 +203,49 @@ int	main(int ac, char **av)
 	printf("\n");*/
 // it work only in case of separated args 
 
-/*int	ft_get_index(int nb, t_stack *s)
-{
-	int	tmp;
-
-	tmp = ft_pope(s);
-	if (nb != tmp)
-		return (0 + ft_get_index(nb, s));
-	ft_push(&a, 0, 0);
-	return (s->top);
-}*/
-
 /******************* (update below algo) ****************************/
-
-// FIRST : split by the middle number after it gets sorted
-// second : search for the numbers are < middle and push to b (the sorting is not important)
-// third : i can see if i can work on both stacks at the same time
-// in the stack B I HAVE TO CAMPARE EACH ELEM with next and the last (this method will help me to use : swap or rb rr)
 	int	reference;
-/*88888888888888888888888888888 DONT FORGET TO COUNT THE NUMBER OF OPERATORS 88888888888888888888888888888888888888888*/
-	reference = (ft_help_arr(&a))[a.top / 2];
-//	printf("\nref :=> %d\n", reference);
-//	int	len = a.top;
+	int	ref[50];
+	int	i;
+
+	i = -1;
+	while (++i < 23)
+		ref[i] = (ft_help_arr(&a))[((a.top * (i + 1))) / 23];
+	reference = ref[1];
+	i = 1;
 	while (1)
 	{
-		// I HAVE TO :=> get the value of the near value
-//		int	index = ft_check_whos_near(&a, arr, len);
+		//printf("reference :=> %d\n", reference);
 		tmp = ft_pope(&a);
 		int	tmp1 = ft_pope(&a);
 		ft_push(&a, tmp1, 0);
 		ft_push(&a, tmp, 0);
+//		int	index = ft_check_whos_near(&a, arr, reference);
 		if (tmp <= reference)
-			ft_push(&b, ft_pope(&a), PB);
-		else
-			ft_rotate(&a, &b, RA);
-//		else if (tmp > tmp1 && tmp1 > reference && tmp > reference)
-//			ft_swap(&a, 0, SA);
-	//	else
-	//		ft_rotate(&a, &b, RA);
-		/*else if (a.top == b.top || b.top == (a.top - 1))
-			break;
-		else
-			ft_rotate(&a, &b, RA);
-		else if (tmp > reference && tmp0 <= reference && (tmp1 < tmp2 && b.top == 1))
-			ft_swap(&a, &b, SS);
-		else if (tmp > reference && tmp0 > reference && tmp > tmp0)
-			ft_swap(&a, 0, SA);
-		else if (tmp > reference && tmp0 <= reference)
-			ft_swap(&a, 0, SA);*/
-		if (b.top == a.top)
 		{
-			ft_best_algo(&a, &b, MAX);
+			ft_push(&b, ft_pope(&a), PB);
+			int	t1 = ft_pope(&b);
+			ft_push(&b, t1, 0);
+			if (b.top >= 1 && t1 <= ref[i - 1])
+				ft_rotate(&b, &a, RB);
+		}
+		else
+			ft_rotate(&a, &b, RA);
+//		else
+//			ft_r_rotate(&a, &b, RRA);
+		if (i == 22)
+		{
+		//	ft_push(&b, ft_pope(&a), PB);
 			ft_best_algo(&b, &a, MIN);
+			ft_best_algo(&a, &b, MAX);
 			break;
+		}
+		if (!ft_is_exist(&a, reference) && i < 22)
+		{
+			i++;
+			reference = ref[++i];
 		}
 	}
-		
-/******************* (BEST ALGO (until now))*************************/
-/*	limits[0] = ft_pope(&a);
-	limits[1] = limits[0];
-	ft_push(&a, limits[0], 0);
-	while (1)
-	{
-		tmp = ft_pope(&a);
-		ft_push(&a, tmp, 0);
-		limits[0] = tmp;
-		ft_get_limits(&a, &limits[0]);
-		pos = limits[1];
-		if (tmp == limits[0])
-			ft_push(&b, ft_pope(&a), PB);
-		else if (pos < (a.top / 2))
-			ft_r_rotate(&a, &b, RRA);
-		else if (pos >= (a.top / 2))
-			ft_rotate(&a, &b, RA);
-		if (a.top == -1 || ft_is_sorted(&a))
-		{
-			while (b.top > -1)
-				ft_push(&a, ft_pope(&b), PA);
-			break;
-		}
-	}*/
-/******************************* (WORST ALGO) ******************************/
-// 	while (!ft_is_sorted(&a))
-//		ft_sort_stack(&a, &b);
 /******************************** PRINT STACKS ***************************/
 //	printf("========== \033[1;36mSTACK A\033[1;0m ==========\n");        
 //	ft_print_stack(&a);
@@ -368,3 +308,6 @@ void	ft_r_rotate(t_stack *f, t_stack *s, char *msg)
 	ft_putendl_fd(msg, STD_OUT);
 }
 
+// SOME TIPES TO PROVE MY CODE
+	// 1 ===> TRY TO SEND SHANK AND SORTED AND RETURE IT (don't send it again)
+	// 2 ===> THE last solution is to include rrr and rr

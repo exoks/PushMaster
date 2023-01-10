@@ -1,19 +1,4 @@
-THE BEST OF THE BEST (until now : split and on each range)
---------- (10) ---------
-min :=> 
-max :=> 
-avg :=> 
---------- (100) --------
-min :=> 
-max :=>
-avg :=> 
--------- (500) ---------
-min :=> 
-max :=>
-avg :=> 
-
-#######################################
-BEST ALGO: 
+BEST ALGO: (until now)
 --------- (10) ---------
 min :=> 28 
 max :=> 40
