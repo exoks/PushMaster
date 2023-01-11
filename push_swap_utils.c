@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/12/22 19:52:08 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:03:32 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,17 +14,14 @@
 int	ft_pope(t_stack *stack)
 {
 	if (stack->top == -1)
-	{
-		ft_putendl_fd("Stack is Empty", 2);
 		exit(EXIT_FAILURE);
-	}
 	return ((stack->stack)[stack->top--]);
 }
 
 int	ft_push(t_stack *stack, int elem, char *msg)
 {
 	if (stack->n_elems == stack->top)
-		exit(0);
+		exit(EXIT_FAILURE) ;
 	(stack->stack)[++(stack->top)] = elem;
 	ft_putendl_fd(msg, STD_OUT);
 	return (TRUE);

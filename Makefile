@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/10 01:33:31 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/11 23:11:09 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
@@ -34,7 +34,10 @@ $(NAME): $(OBJ)
 show:
 	./push_swap_visualizer/build/bin/visualizer
 test:
-	@./run.sh -500 500 500
+	@./run.sh -500 500 100
+
+tester:
+	./push_swap_tester/loop.sh 100 100
 
 clean:
 	make -C $(LIB) clean
