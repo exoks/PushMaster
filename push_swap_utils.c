@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/13 15:40:40 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/13 23:49:51 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -18,13 +18,44 @@ int	ft_pop(t_stack *stack)
 	return ((stack->stack)[stack->top--]);
 }
 
-int	ft_push(t_stack *stack, int elem, char *msg)
+void	ft_push(t_stack *stack, int elem, char *msg)
 {
 	if (stack->n_elems == stack->top)
-		exit(EXIT_FAILURE) ;
+		return ;
 	(stack->stack)[++(stack->top)] = elem;
 	ft_putendl_fd(msg, STD_OUT);
-	return (TRUE);
+}
+
+void	ft_get_limits(t_stack *s, int *limits, int flag)
+{
+	int     tmp;
+
+	if (s->top == -1)
+		return ;
+	tmp = ft_pop(s);
+	if ((flag == MIN) * (tmp < limits[0]) + (flag == MAX) * (tmp > limits[0]))
+	{
+		limits[0] = tmp;
+		limits[1] = s->top + 1;
+	}
+	ft_get_limits(s, limits, flag);
+	ft_push(s, tmp, 0);
+}
+
+int	ft_get_index(int *s, int nbr)
+{
+	if (*s != nbr)
+		return (1 + ft_get_index(++s, nbr));
+	return (0);
+}
+
+int	ft_pick_one(t_stack *s)
+{
+	int     elem;
+
+	elem = ft_pop(s);
+	ft_push(s, elem, 0);
+	return (elem);
 }
 
 int	ft_count_nbrs(char **av)
@@ -47,11 +78,13 @@ int	ft_count_nbrs(char **av)
 	return (count);
 }
 
+// This function needs to be optimazed more
 int	*ft_extract_nbrs(char **av, int *count)
 {
 	int		*tmp;
 	char	**tab;
 	int		i;
+	int		j;
 
 	*count = ft_count_nbrs(av);
 	tmp = (int *) malloc(sizeof(int) * *count);
@@ -61,13 +94,15 @@ int	*ft_extract_nbrs(char **av, int *count)
 	while (*av)
 	{
 		tab = ft_split(*av++, ' ');
-		while (*tab)
+		j = -1;
+		while (tab[++j])
 		{
-			tmp[i++] = ft_atoi(*tab);
-			if (!tmp[i - 1] && ft_strlen(*tab) > 1)
+			tmp[i++] = ft_atoi(tab[j]);
+			if (!tmp[i - 1] && ft_strlen(tab[j]) > 1)
 				return (0);
-			free(*tab++);
+			free(tab[j]);
 		}
+		free(tab);
 	}
 	return (tmp);
 }

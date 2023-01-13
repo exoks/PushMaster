@@ -6,42 +6,10 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/13 15:35:10 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/13 23:53:26 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-void	ft_get_limits(t_stack *s, int *limits, int flag)
-{
-	int	tmp;
-
-	if (s->top == -1)
-		return ;
-	tmp = ft_pop(s);
-	if ((flag == MIN) * (tmp < limits[0]) + (flag == MAX) * (tmp > limits[0]))
-	{
-		limits[0] = tmp;
-		limits[1] = s->top + 1;
-	}
-	ft_get_limits(s, limits, flag);
-	ft_push(s, tmp, 0);
-}
-
-int	ft_get_index(int *s, int nbr)
-{
-	if (*s != nbr)
-		return (1 + ft_get_index(++s, nbr));
-	return (0);
-}
-
-int	ft_pick_one(t_stack *s)
-{
-	int	elem;
-
-	elem = ft_pop(s);
-	ft_push(s, elem, 0);
-	return (elem);
-}
 
 int	*ft_help_arr(t_stack *s)
 {
@@ -94,18 +62,69 @@ void	ft_sort(t_stack *a, t_stack *b, int flag)
 	}
 }
 
-void	ft_redistribution(t_stack *a, t_stack *b)
+void	ft_check(t_stack *s, int elem, int *res)
+{
+	int	tmp;
+
+	if (s->top == -1)
+		return ;
+	tmp = ft_pop(s);
+	if (elem > tmp && *res == TRUE)
+		*res = FALSE;
+	ft_check(s, tmp, res);
+	ft_push(s, tmp, 0);
+}
+
+int	ft_is_sorted(t_stack *s)
+{
+	int	res;
+	int	tmp;
+
+	res = TRUE;
+	tmp = ft_pop(s);
+	ft_check(s, tmp, &res);
+	ft_push(s, tmp, 0);
+	return (res);
+}
+
+/*void	ft_sort_three(t_stack *a, t_stack *b)
+{
+	int	max[2];
+	int	min[2];
+	int	tmp[3];
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+		tmp[i] = ft_pop(a);
+	i = -1;
+	while (++i < 3)
+		ft_push(a, tmp[i], 0);
+	ft_get_limits(a, max, MAX);
+	ft_get_limits(a, min, MIN);
+	while (1)
+	{
+		if (tmp[0] = max[0])
+			ft_rotate(a, b, RA);
+		else if (tmp[2] = min[0])
+			ft_rev_rotate(a, b, RRA);
+	}
+}*/
+
+void	ft_redistribution(t_stack *a, t_stack *b, int range)
 {
 	int	index;
 	int	*guide;
 	int	tmp;
 
+//	if (range == 0)
+//		ft_sort_three(a, b);
 	guide = ft_help_arr(a);
 	while (a->top != -1)
 	{
 		tmp = ft_pick_one(a);
 		index = ft_get_index(guide, tmp);
-		if ((index >= b->top + 1 && index <= b->top + 22)
+		if ((index >= b->top + 1 && index <= b->top + 1 + range)
 				|| index < b->top + 1)
 		{
 			ft_push(b, ft_pop(a), PB);
@@ -123,10 +142,12 @@ int	main(int ac, char **av)
 	t_stack	b;
 
 	if (ac == 1)
-		return (EXIT_FAILURE);
+		return (0);
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
-	ft_redistribution(&a, &b);
+//	if (ft_is_sorted(&a))
+//		return (free(a.stack), free(b.stack), 0);
+	ft_redistribution(&a, &b, 15);
 	ft_sort(&a, &b, MAX);
 //	ft_print_stack(&a);
 	return (0);
@@ -151,17 +172,17 @@ void	ft_swap(t_stack *f, t_stack *s, char *msg)
 void	ft_rotate(t_stack *f, t_stack *s, char *msg)
 {
 	int	tmp;
-	int	i;
+	int	top;
 
 	if (f->top <= 0)
 		return ;
-	i = 0;
+	top = s->top;
 	tmp = ft_pop(f);
-	while (f->top > -1 && ft_push(s, ft_pop(f), 0))
-		++i;
+	while (f->top > -1)
+		ft_push(s, ft_pop(f), 0);
 	ft_push(f, tmp, 0);
-	while (i && ft_push(f, ft_pop(s), 0))
-		i--;
+	while (s->top != top)
+		ft_push(f, ft_pop(s), 0);
 	if (msg && !ft_strncmp(msg, RR, ft_strlen(msg)))
 		ft_rotate(s, f, 0);
 	ft_putendl_fd(msg, STD_OUT);
@@ -170,16 +191,16 @@ void	ft_rotate(t_stack *f, t_stack *s, char *msg)
 void	ft_rev_rotate(t_stack *f, t_stack *s, char *msg)
 {
 	int	tmp;
-	int	i;
+	int	top;
 
 	if (f->top <= 0)
 		return ;
-	i = 0;
-	while (f->top > 0 && ft_push(s, ft_pop(f), 0))
-		++i;
+	top = s->top;
+	while (f->top > 0)
+		ft_push(s, ft_pop(f), 0);
 	tmp = ft_pop(f);
-	while (i && ft_push(f, ft_pop(s), 0))
-		i--;
+	while (s->top != top)
+		ft_push(f, ft_pop(s), 0);
 	ft_push(f, tmp, 0);
 	if (msg && !ft_strncmp(msg, RRR, ft_strlen(msg)))
 		ft_rev_rotate(s, f, 0);
