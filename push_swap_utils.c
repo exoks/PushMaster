@@ -6,12 +6,12 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/11 23:03:32 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/13 15:40:40 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ft_pope(t_stack *stack)
+int	ft_pop(t_stack *stack)
 {
 	if (stack->top == -1)
 		exit(EXIT_FAILURE);
@@ -100,26 +100,14 @@ int	ft_creat_stacks(int count, char **av, t_stack *a, t_stack *b)
 	return (count);
 }
 
-void	ft_print_main_stack(t_stack *b, int count)
+void	ft_print_stack(t_stack *s)
 {
-	int	i;
+	int	tmp;
 
-	printf("========= \033[1;36mMAIN STACK\033[1;0m ========\n");
-	i = -1;
-	while (++i < count)
-		printf("-> %-25d|\n", (b->stack)[i]);
-	printf("=============================\n");
-}
-
-void	ft_print_stack(t_stack *stack)
-{
-	int	i;
-	if (stack->top == -1)
-		ft_putendl_fd("Empty Stack", STD_ERROR);
-	while (stack->top > -1)
-	{
-		i = ft_pope(stack);
-		printf("\033[1;32m->\033[1;0m %-25d|\n", i);
-	}
-	printf("=============================\n");
+	if (s->top == -1)
+		return ;
+	tmp = ft_pop(s);
+	printf(" %d \n", tmp);
+	ft_print_stack(s);
+	ft_push(s, 0, 0);
 }

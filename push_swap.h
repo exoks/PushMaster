@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/11 23:31:46 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/12 16:22:03 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -38,11 +38,12 @@ typedef struct s_stack
 	int			n_elems;
 }				t_stack;
 
+void	ft_print_stack(t_stack *s);
 void	ft_rev_rotate(t_stack *f, t_stack *s, char *msg);
 void	ft_rotate(t_stack *f, t_stack *s, char *msg);
 void	ft_swap(t_stack *f, t_stack *s, char *msg);
 int		ft_push(t_stack *stack, int elem, char *msg);
-int		ft_pope(t_stack *stack);
+int		ft_pop(t_stack *stack);
 int		ft_creat_stacks(int count, char **av, t_stack *a, t_stack *b);
 int		ft_count_nbrs(char **av);
 int		*ft_extract_nbrs(char **av, int *count);
