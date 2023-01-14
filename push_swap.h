@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/14 17:59:19 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 22:44:43 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -18,6 +18,7 @@
 # define TRUE 1
 # define FALSE 0
 # define ALL 3
+# define SOME 4
 # define SA "sa"
 # define SB "sb"
 # define SS "ss"
@@ -41,7 +42,7 @@ typedef struct s_stack
 
 void	ft_sort_three(t_stack *a, t_stack *b);
 void    ft_redistribution(t_stack *a, t_stack *b, int range);
-void    ft_sort(t_stack *a, t_stack *b, int flag);
+void    ft_sort(t_stack *a, t_stack *b, int steps, int flag);
 void	ft_get_limits(t_stack *s, int *limits, int flag);
 int		ft_get_index(int *s, int nbr);
 int		ft_pick_one(t_stack *s);
