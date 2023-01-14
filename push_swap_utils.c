@@ -6,25 +6,10 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/13 23:49:51 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 01:09:21 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-int	ft_pop(t_stack *stack)
-{
-	if (stack->top == -1)
-		exit(EXIT_FAILURE);
-	return ((stack->stack)[stack->top--]);
-}
-
-void	ft_push(t_stack *stack, int elem, char *msg)
-{
-	if (stack->n_elems == stack->top)
-		return ;
-	(stack->stack)[++(stack->top)] = elem;
-	ft_putendl_fd(msg, STD_OUT);
-}
 
 void	ft_get_limits(t_stack *s, int *limits, int flag)
 {

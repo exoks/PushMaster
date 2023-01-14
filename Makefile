@@ -6,11 +6,11 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/13 20:43:22 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/14 01:27:36 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
-SRC := push_swap.c push_swap_utils.c
+SRC := push_swap.c push_swap_utils.c push_swap_instructions.c push_swap_algorithm.c
 LIB := libft/
 INC := -Ipush_swap.h -I$(LIB)
 CC := gcc
@@ -34,7 +34,7 @@ $(NAME): $(OBJ)
 show:
 	./push_swap_visualizer/build/bin/visualizer
 test:
-	@./run.sh 0 10 5
+	@./run.sh -100 100 100
 
 tester:
 	./push_swap_tester/loop.sh 100 100
