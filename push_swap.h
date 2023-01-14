@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/14 01:32:19 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 14:39:38 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -38,6 +38,7 @@ typedef struct s_stack
 	int			n_elems;
 }				t_stack;
 
+void	ft_sort_three(t_stack *a, t_stack *b);
 void    ft_redistribution(t_stack *a, t_stack *b, int range);
 void    ft_sort(t_stack *a, t_stack *b, int flag);
 void	ft_get_limits(t_stack *s, int *llimits, int flag);

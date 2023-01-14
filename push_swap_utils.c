@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/14 01:09:21 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 14:49:24 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -129,5 +129,5 @@ void	ft_print_stack(t_stack *s)
 	tmp = ft_pop(s);
 	printf(" %d \n", tmp);
 	ft_print_stack(s);
-	ft_push(s, 0, 0);
+	ft_push(s, tmp, 0);
 }
