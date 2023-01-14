@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:15:48 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/14 15:38:35 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 17:59:06 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 # include "push_swap.h"
@@ -78,10 +78,9 @@ void	ft_redistribution(t_stack *a, t_stack *b, int range)
 		{
 			ft_push(b, ft_pop(a), PB);
 			if (index < b->top + 1) 
-			ft_rotate(b, a, RB);
+				ft_rotate(b, a, RB);
 		}
 		else
 			ft_rotate(a, b, RA);
 	}
-//	ft_sort_three(a, b);
 }

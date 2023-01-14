@@ -33,13 +33,13 @@ rrb=`echo "$all" | awk '/^rrb$/' | wc -l`
 rrr=`echo "$all" | awk '/^rrr$/' | wc -l`
 
 echo -ne "\n\033[1;36m=>\033[1;0m waiting "
-#i=0
-#while [ $i -lt 3 ]; do
-#	echo -n "."
-#	sleep 1
-#	i=$(($i + 1))
-#done
-#echo ""
+i=0
+while [ $i -lt 3 ]; do
+	echo -n "."
+	sleep 1
+	i=$(($i + 1))
+done
+echo ""
 
 if [ ${nbr} -gt 1500 ]
 then

@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/14 15:38:06 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/14 20:02:59 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -64,29 +64,48 @@ void	ft_sort_three(t_stack *a, t_stack *b)
 			ft_push(b, ft_pop(a), PB);
 	}
 	while (b->top > -1)
-			ft_push(a, ft_pop(b), PB);
+		ft_push(a, ft_pop(b), PA);
 }
 
+void	ft_sort_five(t_stack *a, t_stack *b)
+{
+	int	min[2];
+	int	tmp;
+
+	while (a->top > 2)
+	{
+		min[0] = ft_pick_one(a);
+		ft_get_limits(a, &min[0], MIN);
+		tmp = ft_pick_one(a);
+		if (tmp == min[0])
+			ft_push(b, ft_pop(a), PB);
+		else if (min[1] >= (a->top / 2))
+			ft_rotate(a, b, RA);
+		else
+			ft_rev_rotate(a, b, RRA);
+	}
+}
 int	main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-
+	// HANDLING ERROR
 	if (ac == 1)
 		return (0);
 	if (!ft_creat_stacks(ac, &av[1], &a, &b))
-	{
-		while (1);
 		return (ft_putendl_fd("Error", STD_ERROR), 0);
-	}
 	if (ft_is_sorted(&a))
 		return (free(a.stack), free(b.stack), 0);
-	ft_redistribution(&a, &b, 15);
-	ft_sort(&a, &b, MAX);
-//	ft_sort_three(&a, &b);
-///	printf("\n========== A ==========\n");
-//	ft_print_stack(&a);
-//	printf("\n========== B ==========\n");
-//	ft_print_stack(&b);
+	ft_sort_five(&a, &b);
+	//if (a.n_elems > 5)
+	//{
+	//	ft_redistribution(&a, &b, a.n_elems / 5);
+	//	ft_sort(&a, &b, MAX);
+	//}
+	ft_sort_three(&a, &b);
+	printf("\n========== A ==========\n");
+	ft_print_stack(&a);
+	//printf("\n========== B ==========\n");
+	//ft_print_stack(&b);
 	return (0);
 }
