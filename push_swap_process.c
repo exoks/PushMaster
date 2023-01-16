@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/15 21:49:20 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:44:23 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -27,12 +27,12 @@ void	ft_get_limits(t_stack *s, int *limits, int flag)
 	ft_push(s, tmp, 0);
 }
 
-/*int	ft_get_index(int *s, int nbr)
+int	ft_get_index(int *s, int nbr)
 {
 	if (*s != nbr)
 		return (1 + ft_get_index(++s, nbr));
 	return (0);
-}*/
+}
 
 int	ft_pick_one(t_stack *s)
 {

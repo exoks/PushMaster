@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/15 21:49:08 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/16 23:02:30 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -24,7 +24,7 @@ int     main(int ac, char **av)
                 return (0);
         if (a.n_elems > 5)
         {
-                ft_redistribution(&a, &b, 30);
+                ft_redistribution(&a, &b, 15);
                 ft_sort(&a, &b, ALL, MAX);
                 return (0);
         }

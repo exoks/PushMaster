@@ -6,21 +6,24 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/15 21:53:43 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/16 23:03:21 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
-SRC := push_swap.c push_swap_process push_swap_instructions.c push_swap_algorithm.c
+SRC := push_swap.c push_swap_process.c push_swap_instructions.c push_swap_algorithm.c
+SRCB := checker.c push_swap_instructions.c push_swap_process.c
 LIB := libft/
 INC := -Ipush_swap.h -I$(LIB)
 CC := gcc
 RM := rm -rf
 CFLAGS := -Wall -Wextra -Werror
 OBJ := $(SRC:.o=.c)
+OBJB := $(SRCB:.c=.o)
+CHECKER := checker
 
-###################
-#     COLORS      #
-###################
+##################################################
+#     				COLORS     					 #
+##################################################
 GREEN := \033[1;32m
 RED := \033[1;31m
 CYAN := \033[1;36m
@@ -33,8 +36,16 @@ $(NAME): $(OBJ)
 	@make -C $(LIB) all
 	@$(CC) $(CFLAGS) $(INC) $^ $(LIB)*.o -o $@
 	@ echo "$(GREEN)<<<<<<<<<< PUSH_SWAP >>>>>>>>>>"
-	
-#bonus: all
+
+bonus: $(CHECKER)
+
+$(CHECKER): $(OBJB)
+	make -C $(LIB) all
+	$(CC) $(CFLAGS) $^ $(LIB)*.o $(INC) -o $@
+
+#%.o:%.c
+#	$(CC) $(CFLAGS) $^ $(INC)
+
 show:
 	./push_swap_visualizer/build/bin/visualizer
 test:
@@ -50,6 +61,7 @@ clean:
 fclean:
 	make -C $(LIB) fclean
 	$(RM) $(NAME)
+	$(RM) $(CHECKER)
 
 re : fclean all
 
