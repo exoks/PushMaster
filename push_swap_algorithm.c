@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:15:48 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/15 21:51:14 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:50:19 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 # include "push_swap.h"
@@ -48,7 +48,7 @@ void    ft_sort_three(t_stack *a, t_stack *b)
 	int	tmp[3];
 	int	i;
 	
-	while (!ft_is_sorted(a))
+	while (!ft_check(a, IS_STACK_SORTED))
 	{
 		int     top = a->top;
 		i = top + 1;

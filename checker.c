@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/16 22:27:32 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:02:37 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -26,42 +26,13 @@ int     main(int ac, char **av)
                 return (ft_putendl_fd("Error", STD_ERROR), 0);
         if (ft_is_sorted(&a))
                 return (0);
-//		printf("\n========== A ==========\n");
-//		ft_print_stack(&a);
 		line = get_next_line(0);
 		while (line)
 		{
 			apply_instructions(line, &a, &b);
-	//		printf("%s", line);
-			/*if (!ft_strncmp(SA, line, ft_strlen(line)))
-				ft_swap(&a, 0, SA);
-			else if (!ft_strncmp(SB, line, ft_strlen(line)))
-				ft_swap(&b, 0, SB);
-			else if (!ft_strncmp(SS, line, ft_strlen(line)))
-				ft_swap(&a, &b, SS);
-			else if (!ft_strncmp(PA, line, ft_strlen(line)))
-				ft_push(&a, ft_pop(&b), PA);
-			else if (!ft_strncmp(PB, line, ft_strlen(line)))
-				ft_push(&b, ft_pop(&a), PB);
-			else if (!ft_strncmp(RA, line, ft_strlen(line)))
-				ft_rotate(&a, &b, RA);
-			else if (!ft_strncmp(RB, line, ft_strlen(line)))
-				ft_rotate(&b, &a, RB);
-			else if (!ft_strncmp(RR, line, ft_strlen(line)))
-				ft_rotate(&a, &b, RR);
-			else if (!ft_strncmp(RRA, line, ft_strlen(line)))
-				ft_rev_rotate(&a, &b, RRA);
-			else if (!ft_strncmp(RRB, line, ft_strlen(line)))
-				ft_rev_rotate(&b, &a, RRB);
-			else if (!ft_strncmp(RRR, line, ft_strlen(line)))
-				ft_rev_rotate(&a, &b, RRR);*/
 			free(line);
 			line = get_next_line(0);
 		}
-//      	printf("\n========== A ==========\n");
-//            ft_print_stack(&a);
-//		printf("b.top => %d\n", b.top);
-//		printf("is sorted :=>  %d\n", ft_is_sorted(&a));
 		if (ft_is_sorted(&a) && b.top == -1)
 			ft_putendl_fd("OK", STD_OUT);
 		else

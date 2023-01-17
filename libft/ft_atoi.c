@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:34:20 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/10/02 19:20:10 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:58:43 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -28,19 +28,3 @@ int	ft_atoi(const char *str)
 		nb = (nb * 10) + (*(str++) - '0');
 	return (nb * s);
 }
-/*
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	int	a = 4294967295;
-	char	dest[30] = "99999999999999999999999";
-	printf("%d\n", a);
-	//sprintf(dest, "%d", INT_MIN);
-	printf("ft_atoi : %d\n", ft_atoi(dest));
-	printf("atoi : %d\n", atoi(dest));
-	return (0);
-}
-*/
