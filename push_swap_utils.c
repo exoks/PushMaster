@@ -6,10 +6,10 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:23:51 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/17 21:48:19 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/18 19:01:55 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-# include "push_swap.h"
+#include "push_swap.h"
 
 t_ll	ft_atoi_plus(char *str)
 {
@@ -29,20 +29,20 @@ t_ll	ft_atoi_plus(char *str)
 	return ((nb * s) * (*str == 0));
 }
 
-void    ft_get_limits(t_stack *s, int *limits, int flag)
+void	ft_get_limits(t_stack *s, int *limits, int flag)
 {
-        int     tmp;
+	int	tmp;
 
-        if (s->top == -1)
-                return ;
-        tmp = ft_pop(s);
-        if ((flag == MIN) * (tmp < limits[0]) + (flag == MAX) * (tmp > limits[0]))
-        {
-                limits[0] = tmp;
-                limits[1] = s->top + 1;
-        }
-        ft_get_limits(s, limits, flag);
-        ft_push(s, tmp, 0);
+	if (s->top == -1)
+		return ;
+	tmp = ft_pop(s);
+	if ((flag == MIN) * (tmp < limits[0]) + (flag == MAX) * (tmp > limits[0]))
+	{
+		limits[0] = tmp;
+		limits[1] = s->top + 1;
+	}
+	ft_get_limits(s, limits, flag);
+	ft_push(s, tmp, 0);
 }
 
 int	ft_get_index(int *s, int nbr)

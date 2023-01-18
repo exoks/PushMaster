@@ -6,10 +6,40 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/17 21:46:48 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/18 19:58:10 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	ft_search(t_stack *s, int elem, int *res, int flag)
+{
+	int	tmp;
+
+	if (s->top == -1)
+		return ;
+	tmp = ft_pop(s);
+	if (flag == IS_STACK_SORTED && elem > tmp && *res == TRUE)
+		*res = FALSE;
+	if (flag == IS_ELEM_REPETITIVE && elem == tmp && *res == TRUE)
+		*res = FALSE;
+	if (flag == IS_STACK_SORTED)
+		ft_search(s, tmp, res, flag);
+	else
+		ft_search(s, elem, res, flag);
+	ft_push(s, tmp, 0);
+}
+
+int	ft_check(t_stack *s, int flag)
+{
+	int	res;
+	int	tmp;
+
+	res = TRUE;
+	tmp = ft_pop(s);
+	ft_search(s, tmp, &res, flag);
+	ft_push(s, tmp, 0);
+	return (res);
+}
 
 int	ft_count_nbrs(char **av)
 {
@@ -30,7 +60,7 @@ int	ft_count_nbrs(char **av)
 	return (count);
 }
 
-int	ft_extract_nbrs(char **av, t_stack *a, t_stack *b)
+int	ft_extract_nbrs(char **av, t_stack *b)
 {
 	char	**tab;
 	t_ll	nb;
@@ -44,23 +74,19 @@ int	ft_extract_nbrs(char **av, t_stack *a, t_stack *b)
 		i = -1;
 		while (tab[++i])
 		{
+			nb = -1;
+			while (tab[i][++nb])
+				if (!ft_isdigit(tab[i][nb]) || tab[i][nb] == '+' || tab[i][nb] == '-')
+					re = FALSE;
 			nb = ft_atoi_plus(tab[i]);
-			if (nb > INT_MAX || nb < INT_MIN 
-					|| (nb == 0 && !ft_strchr("+-", *tab[i]) && ft_strlen(tab[i]) > 2))
+			if (nb > INT_MAX || nb < INT_MIN
+				|| (nb == 0 && !ft_strchr("+-", *tab[i]) && ft_strlen(tab[i]) > 2))
 				re = FALSE;
 			ft_push(b, nb, 0);
 			free(tab[i]);
 		}
 		free(tab);
 	}
-	// CHECK IF THERE IS ANY REPETION
-	while (b->top > -1)
-	{
-		if (!ft_check(b, IS_ELEM_REPETITIVE))
-			return (FALSE);
-		ft_push(a, ft_pop(b), 0);
-	}
-	//I NEED TO CHECK IF THERE IS 
 	return (re);
 }
 
@@ -77,8 +103,14 @@ int	ft_creat_stacks(char **av, t_stack *a, t_stack *b)
 	b->n_elems = count;
 	a->top = -1;
 	b->top = -1;
-	if (ft_extract_nbrs(av, a, b) == FALSE)
+	if (ft_extract_nbrs(av, b) == FALSE)
 		return (0);
+	while (b->top > -1)
+	{
+		if (!ft_check(b, IS_ELEM_REPETITIVE))
+			return (FALSE);
+		ft_push(a, ft_pop(b), 0);
+	}
 	return (count);
 }
 

@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/17 21:39:41 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/18 19:19:37 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -36,7 +36,7 @@
 # define IS_STACK_SORTED 10
 # define IS_ELEM_REPETITIVE 11
 
-typedef long long int t_ll;
+typedef long long int	t_ll;
 
 typedef struct s_stack
 {

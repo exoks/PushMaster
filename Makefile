@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/17 17:31:48 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/18 19:20:18 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
@@ -18,7 +18,7 @@ CC := gcc
 RM := rm -rf
 CFLAGS := -Wall -Wextra -Werror
 OBJ := $(SRC:.o=.c)
-OBJB := $(SRCB:.c=.o)
+OBJB := $(SRCB:.o=.c)
 CHECKER := checker
 
 ##################################################
@@ -41,10 +41,7 @@ bonus: $(CHECKER)
 
 $(CHECKER): $(OBJB)
 	make -C $(LIB) all
-	$(CC) $(CFLAGS) $^ $(LIB)*.o $(INC) -o $@
-
-#%.o:%.c
-#	$(CC) $(CFLAGS) $^ $(INC)
+	$(CC) $(CFLAGS) $(INC) $^ $(LIB)*.o -o $@
 
 show:
 	./push_swap_visualizer/build/bin/visualizer

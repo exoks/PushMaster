@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/17 15:02:37 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/18 19:38:53 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,30 +14,30 @@
 char	*get_next_line(int fd);
 void	apply_instructions(char *line, t_stack *a, t_stack *b);
 
-int     main(int ac, char **av)
+int	main(int ac, char **av)
 {
-        t_stack a;
-        t_stack b;
-		char	*line;
+	t_stack	a;
+	t_stack	b;
+	char	*line;
 
-        if (ac == 1)
-                return (0);
-        if (!ft_creat_stacks(ac, &av[1], &a, &b))
-                return (ft_putendl_fd("Error", STD_ERROR), 0);
-        if (ft_is_sorted(&a))
-                return (0);
+	if (ac == 1)
+		return (0);
+	if (!ft_creat_stacks(&av[1], &a, &b))
+		return (ft_putendl_fd("Error", STD_ERROR), EXIT_FAILURE);
+	if (ft_check(&a, IS_STACK_SORTED))
+		return (0);
+	line = get_next_line(0);
+	while (line)
+	{
+		apply_instructions(line, &a, &b);
+		free(line);
 		line = get_next_line(0);
-		while (line)
-		{
-			apply_instructions(line, &a, &b);
-			free(line);
-			line = get_next_line(0);
-		}
-		if (ft_is_sorted(&a) && b.top == -1)
-			ft_putendl_fd("OK", STD_OUT);
-		else
-			ft_putendl_fd("KO", STD_OUT);
-        return (0);
+	}
+	if (ft_check(&a, IS_STACK_SORTED) && b.top == -1)
+		ft_putendl_fd("OK", STD_OUT);
+	else
+		ft_putendl_fd("KO", STD_OUT);
+	return (0);
 }
 
 void	apply_instructions(char *line, t_stack *a, t_stack *b)
@@ -84,7 +84,7 @@ char    *get_next_line(int fd)
 		return (buff);
 }
 
-void	ft_check(t_stack *s, int elem, int *res)
+/*void	ft_check(t_stack *s, int elem, int *res)
 {
 	int	tmp;
 
@@ -107,4 +107,4 @@ int	ft_is_sorted(t_stack *s)
 	ft_check(s, tmp, &res);
 	ft_push(s, tmp, 0);
 	return (res);
-}
+}*/
