@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/30 15:57:20 by oezzaou           #+#    #+#              #
-#    Updated: 2022/12/17 17:12:41 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/19 19:22:10 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := libft.a
@@ -25,7 +25,6 @@ NOCLR := \033[1;0m
 $(NAME): $(OBJM)
 	@ar -csr $@ $^
 #	@echo "$(GREEN)LIBFT CREATED ✔️"
-
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:23:51 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 03:48:05 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/19 21:21:08 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -26,7 +26,7 @@ t_ll	ft_atoi_plus(char *str)
 		str++;
 	while (*str >= '0' && *str <= '9')
 		nb = (nb * 10) + (*(str++) - '0');
-	return ((nb * s));
+	return (nb * s);
 }
 
 void	ft_get_limits(t_stack *s, int *limits, int flag)

@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 02:51:48 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/19 21:38:37 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -14,6 +14,8 @@
 # include "libft.h"
 # include <stdio.h>
 # include <limits.h>
+# define CREAT 11
+# define SWAP 12
 # define STD_ERROR 2
 # define STD_OUT 1
 # define TRUE 1
