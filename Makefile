@@ -6,20 +6,22 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/18 19:20:18 by oezzaou          ###   ########.fr        #
+#    Updated: 2023/01/19 05:10:05 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME := push_swap
-SRC := push_swap.c push_swap_process.c push_swap_instructions.c push_swap_algorithm.c push_swap_utils.c
-SRCB := checker.c push_swap_instructions.c push_swap_process.c push_swap_utils.c
+SRC := src/push_swap.c src/push_swap_process.c src/push_swap_instructions.c src/push_swap_algorithm.c src/push_swap_utils.c
+SRCB := src/checker.c src/push_swap_instructions.c src/push_swap_process.c src/push_swap_utils.c
 LIB := libft/
-INC := -Ipush_swap.h -I$(LIB)
+INC := include/
 CC := gcc
 RM := rm -rf
 CFLAGS := -Wall -Wextra -Werror
-OBJ := $(SRC:.o=.c)
-OBJB := $(SRCB:.o=.c)
+OBJDIR = obj
+OBJ := $(SRC:.c=.o)
+#OBJB := $(SRCB:.o=.c)
 CHECKER := checker
+SRCDIR := src/
 
 ##################################################
 #     				COLORS     					 #
@@ -31,11 +33,15 @@ NOCLR := \033[1;0m
 
 all: $(NAME)
 
+$(OBJDIR)/%.o: %.c $(INC) $(LIB)
+	$(CC) $(CFLAGS) -I $(INC) -I $(LIB) -c $< -o $@
+
 $(NAME): $(OBJ)
-	@echo "$(RED)COMPILING ...$(NOCLR)"
-	@make -C $(LIB) all
-	@$(CC) $(CFLAGS) $(INC) $^ $(LIB)*.o -o $@
-	@ echo "$(GREEN)<<<<<<<<<< PUSH_SWAP >>>>>>>>>>"
+
+#	@echo "$(RED)COMPILING ...$(NOCLR)"
+#	@make -C $(LIB) all
+#	@$(CC) $(CFLAGS) $(INC) $^ $(LIB)*.o -o $@
+#	@ echo "$(GREEN)<<<<<<<<<< PUSH_SWAP >>>>>>>>>>"
 
 bonus: $(CHECKER)
 
