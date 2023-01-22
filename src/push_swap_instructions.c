@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:52:15 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 01:59:56 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/20 00:42:22 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -20,7 +20,7 @@ int	ft_pop(t_stack *s)
 
 void	ft_push(t_stack *s, int elem, char *msg)
 {
-	if (s->n_elems == s->top)
+	if (s->size == s->top)
 		return ;
 	(s->stack)[++(s->top)] = elem;
 	ft_putendl_fd(msg, STD_OUT);

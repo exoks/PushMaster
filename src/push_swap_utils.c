@@ -6,10 +6,19 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:23:51 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 21:21:08 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/21 21:04:16 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	ft_swap_nbrs(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
 t_ll	ft_atoi_plus(char *str)
 {

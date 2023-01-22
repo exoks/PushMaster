@@ -6,22 +6,34 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 21:38:37 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/21 23:34:20 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
-# include <stdio.h>
 # include <limits.h>
-# define CREAT 11
-# define SWAP 12
 # define STD_ERROR 2
 # define STD_OUT 1
 # define TRUE 1
 # define FALSE 0
+# include <stdio.h>
+
+/*****************************
+*       FT_GUIDE FLAG        *
+******************************/
+# define CREAT 11
+# define SORT 12
+
+/*****************************
+*       FT_SORT FLAGS        *
+******************************/
 # define ALL 3
 # define SOME 4
+
+/*****************************
+*        INSTRUCTIONS        *
+******************************/
 # define SA "sa"
 # define SB "sb"
 # define SS "ss"
@@ -33,10 +45,19 @@
 # define RRA "rra"
 # define RRB "rrb"
 # define RRR "rrr"
+
+/*****************************
+*    FT_GET_LIMITS FLAGS     *
+******************************/
 # define MAX 5
 # define MIN 6
+
+/*****************************
+*       FT_CHECK FLAGS       *
+******************************/
 # define IS_STACK_SORTED 10
-# define IS_ELEM_REPETITIVE 11
+# define IS_STACK_REV_SORTED 11
+# define IS_ELEM_REPETITIVE 12
 
 typedef long long int	t_ll;
 
@@ -44,9 +65,10 @@ typedef struct s_stack
 {
 	int			top;
 	int			*stack;
-	int			n_elems;
+	int			size;
 }				t_stack;
 
+void	ft_swap_nbrs(int *a, int *b);
 t_ll	ft_atoi_plus(char *s);
 int		ft_check(t_stack *s, int flag);
 void	ft_sort_three(t_stack *a, t_stack *b);
@@ -62,5 +84,4 @@ void	ft_push(t_stack *stack, int elem, char *msg);
 int		ft_pop(t_stack *stack);
 int		ft_creat_stacks(char **av, t_stack *a, t_stack *b);
 
-void	ft_print_stack(t_stack *s);
 #endif
