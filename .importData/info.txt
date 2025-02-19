@@ -1,4 +1,0 @@
-each algorithm has a << worst case >> && << average case >> && << best case >> on sorting a << !!!!ARRAY!!!!! >> 
-
-Q:
-so the question is to calcul cases on a data struct (as Stack); 
