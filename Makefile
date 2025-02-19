@@ -9,73 +9,101 @@
 #    Updated: 2023/01/20 03:33:07 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME := push_swap
-CHECKER := checker
-SRCM := push_swap push_swap_process push_swap_instructions push_swap_algorithm push_swap_utils
-SRCB := checker push_swap_instructions push_swap_process push_swap_utils
-LIB := libft/
-INC := include/
-SRCDIR := src/
-OBJDIR := obj/
 
-##################### COMPILER ###################
-CC := gcc
-CFLAGS := -Wall -Wextra -Werror
-RM := rm -rf
+#====<[ Colors: ]>==============================================================
+GREEN					= \033[1;32m
+RED						= \033[1;31m
+BLUE					= \033[34m
+CYAN					= \033[1;36m
+GRAY					= \033[0;90m
+PURPLE				= \033[0;35m
+YELLOW				= \033[0;93m
+BLACK  				= \033[20m
+MAGENTA 			= \033[35m
+WHITE  				= \033[37m
+PINK					= \033[0;38;5;199m
+ORANGE 				= \033[38;5;214m
+LIGHT_BLACK  	= \033[90m
+LIGHT_RED    	= \033[91m
+LIGHT_GREEN  	= \033[92m
+LIGHT_YELLOW 	= \033[93m
+LIGHT_BLUE   	= \033[94m
+LIGHT_MAGENTA = \033[95m
+LIGHT_CYAN   	= \033[96m
+LIGHT_WHITE  	= \033[97m
+LIGHT_BLUE		= \033[38;5;45m
+RESET					= \033[1;0m
 
-###################### SRCS ######################
-OBJM := $(addprefix $(OBJDIR), $(addsuffix .o, $(SRCM)))
-SRCM := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCM)))
+#====<[ CC compiler: ]>=========================================================
+CC						:= cc
+CFLAGS				:= -Wall -Wextra -Werror
+RM						:= rm -rf
 
-OBJB := $(addprefix $(OBJDIR), $(addsuffix .o, $(SRCB)))
-SRCB := $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCB)))
+#===<[ Sources: ]>==============================================================
+PROJECT				:= Push_swap
+NAME					:= push_swap
+LIBFT					:= libft
+SRC_DIR				:= src
+OBJ_DIR				:= obj
+INCLUDE				:= -Iinclude -I$(LIBFT)/include
+SRC						:= push_swap push_swap_process push_swap_instructions\
+								 push_swap_algorithm push_swap_utils
+OBJ						:= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC)))
+SRC						:= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
-##################################################
-#     				COLORS     					 #
-##################################################
-GREEN := \033[1;32m
-RED := \033[1;31m
-CYAN := \033[1;36m
-NOCLR := \033[1;0m
+CHECKER				:= checker
+SRC_BNS				:= checker push_swap_process push_swap_instructions\
+								 push_swap_utils
+OBJ_BNS 			:= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_BNS)))
+SRC_BNS				:= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_BNS)))
 
-all: $(OBJDIR) $(NAME)
+#====<[ Rules: ]>===============================================================
+all: $(NAME)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIB) -c $^ -o $@
-	@echo "Compling $^ ..."
+$(NAME): $(LIBFT) | $(OBJ)
+	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
+	@echo "${GREEN}[OK]: ${CYAN}$@ ✔️${RESET}"
 
-$(OBJDIR): 
-	@mkdir -p $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dir 
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-29s| $@\n" "$<"
 
-$(NAME): | $(OBJM)
-	@echo "*.o ==========> obj/."
-	@make -C $(LIB)
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIB) $| $(LIB)*.o -o $@
-	@echo "\n$(GREEN)<<<<<<<<<< PUSH_SWAP >>>>>>>>>>\n"
+$(LIBFT):
+	@make -s -C $@ all
 
-bonus: $(OBJDIR) $(CHECKER)
+bonus: $(OBJ_DIR) $(CHECKER)
 
-$(CHECKER): | $(OBJB)
-	@echo "*.o ===========> obj/."
-	@make -s -C $(LIB) all
-	@$(CC) $(CFLAGS) -I $(INC) -I $(LIB) $| $(LIB)*.o -o $@
-	@echo "\n$(GREEN)<<<<<<<<<< CHECKER >>>>>>>>>>\n"
+$(CHECKER): $(LIBFT) | $(OBJ_BNS)
+	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
+	@echo "${GREEN}[OK]: ${CYAN}$@ ✔️${RESET}"
 
 clean:
-	@make -C $(LIB) clean
-	@$(RM) $(OBJDIR)*.o
-	@echo "Cleaning done\n"
-
+	@make -C $(LIBFT) fclean
+	@if [ -d $(OBJ_DIR) ]; then\
+		${RM} $(OBJ_DIR);\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(OBJ_DIR) ✔️";\
+	else\
+		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-29s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(OBJ_DIR) ✖️";\
+	fi
+	
 fclean: clean
-	@make -C $(LIB) fclean
-	@$(RM) $(NAME)
-	@$(RM) $(CHECKER)
-	@$(RM) -rf $(OBJDIR)
-	@echo "Full Cleaning done\n"
+	@if [ -f $(NAME) ]; then\
+		${RM} $(NAME);\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(NAME) ✔️";\
+	fi
+	@if [ -f $(CHECKER) ]; then\
+		${RM} $(CHECKER);\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(CHECKER) ✔️";\
+	fi
 
 re : fclean all
 
-show:
+#====<[ Rules for testing: ]>=====================
+visual:
 	./push_swap_visualizer/build/bin/visualizer
 
 test:
@@ -84,4 +112,11 @@ test:
 tester:
 	./push_swap_tester/loop.sh 100 100
 
-PHONEY: all clean fclean re bonus show test tester
+#=================================================
+
+$(OBJ_DIR): 
+	@mkdir -p $@
+
+.create_dir: $(OBJ_DIR)
+.PHONY: all clean fclean re bonus visual test tester $(LIBFT)
+#===============================================================================
