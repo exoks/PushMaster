@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:23 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/21 23:34:20 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/24 15:47:09 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -17,7 +17,6 @@
 # define STD_OUT 1
 # define TRUE 1
 # define FALSE 0
-# include <stdio.h>
 
 /*****************************
 *       FT_GUIDE FLAG        *

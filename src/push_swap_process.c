@@ -6,7 +6,7 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:03:45 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/21 23:15:58 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/24 15:34:20 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -102,17 +102,17 @@ int	ft_creat_stacks(char **av, t_stack *a, t_stack *b)
 	a->stack = (int *) malloc (sizeof(int) * count);
 	b->stack = (int *) malloc (sizeof(int) * count);
 	if (!(a->stack) || !(b->stack))
-		return (FALSE);
+		return (free(a->stack), free(b->stack), FALSE);
 	a->size = count;
 	b->size = count;
 	a->top = -1;
 	b->top = -1;
 	if (ft_fill_stack(av, b) == FALSE)
-		return (FALSE);
+		return (free(a->stack), free(b->stack), FALSE);
 	while (b->top > -1)
 	{
 		if (!ft_check(b, IS_ELEM_REPETITIVE))
-			return (FALSE);
+			return (free(a->stack), free(b->stack), FALSE);
 		ft_push(a, ft_pop(b), 0);
 	}
 	return (count);

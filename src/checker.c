@@ -6,13 +6,13 @@
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:55:57 by oezzaou           #+#    #+#             */
-/*   Updated: 2023/01/19 21:21:44 by oezzaou          ###   ########.fr       */
+/*   Updated: 2023/01/24 15:36:28 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 char	*get_next_line(int fd);
-void	apply_instructions(char *line, t_stack *a, t_stack *b);
+int		apply_instructions(char *line, t_stack *a, t_stack *b);
 
 int	main(int ac, char **av)
 {
@@ -27,7 +27,8 @@ int	main(int ac, char **av)
 	line = get_next_line(0);
 	while (line)
 	{
-		apply_instructions(line, &a, &b);
+		if (!apply_instructions(line, &a, &b))
+			return (free(a.stack), free(b.stack), EXIT_FAILURE);
 		free(line);
 		line = get_next_line(0);
 	}
@@ -38,30 +39,33 @@ int	main(int ac, char **av)
 	return (free(a.stack), free(b.stack), EXIT_SUCCESS);
 }
 
-void	apply_instructions(char *line, t_stack *a, t_stack *b)
+int	apply_instructions(char *line, t_stack *a, t_stack *b)
 {
 	if (!ft_strncmp(SA, line, ft_strlen(line)))
-		ft_swap(a, 0, SA);
+		ft_swap(a, 0, 0);
 	else if (!ft_strncmp(SB, line, ft_strlen(line)))
-		ft_swap(b, 0, SB);
+		ft_swap(b, 0, 0);
 	else if (!ft_strncmp(SS, line, ft_strlen(line)))
-		ft_swap(a, b, SS);
+		ft_swap(a, b, 0);
 	else if (!ft_strncmp(PA, line, ft_strlen(line)))
-		ft_push(a, ft_pop(b), PA);
+		ft_push(a, ft_pop(b), 0);
 	else if (!ft_strncmp(PB, line, ft_strlen(line)))
-		ft_push(b, ft_pop(a), PB);
+		ft_push(b, ft_pop(a), 0);
 	else if (!ft_strncmp(RA, line, ft_strlen(line)))
-		ft_rotate(a, b, RA);
+		ft_rotate(a, b, 0);
 	else if (!ft_strncmp(RB, line, ft_strlen(line)))
-		ft_rotate(b, a, RB);
+		ft_rotate(b, a, 0);
 	else if (!ft_strncmp(RR, line, ft_strlen(line)))
-		ft_rotate(a, b, RR);
+		ft_rotate(a, b, 0);
 	else if (!ft_strncmp(RRA, line, ft_strlen(line)))
-		ft_rev_rotate(a, b, RRA);
+		ft_rev_rotate(a, b, 0);
 	else if (!ft_strncmp(RRB, line, ft_strlen(line)))
-		ft_rev_rotate(b, a, RRB);
+		ft_rev_rotate(b, a, 0);
 	else if (!ft_strncmp(RRR, line, ft_strlen(line)))
-		ft_rev_rotate(a, b, RRR);
+		ft_rev_rotate(a, b, 0);
+	else
+		return (ft_putendl_fd("Error", STD_ERROR), FALSE);
+	return (TRUE);
 }
 
 char	*get_next_line(int fd)
