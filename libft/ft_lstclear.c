@@ -12,20 +12,7 @@
 #include "libft.h"
 //void	ft_del(void *pt);
 
-/*  //RECURTION : still need work
-void	ft_lstlen(t_list *lst, void (*del)(void *))
-{
-	t_list	*med;
-
-        if (lst)
-        {
-		med = lst->next;
-		del(lst->content);
-        	free(lst);
-		lst = med;
-		ft_lstlen(lst, del);
-        }
-}*/
+//====<[ ft_lstclear: ]>========================================================
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*med;

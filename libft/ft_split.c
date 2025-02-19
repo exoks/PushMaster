@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
+//====<[ ft_word_counter: ]>====================================================
 static int	ft_word_counter(char const *s, char c)
 {
 	int	i;
@@ -26,6 +27,7 @@ static int	ft_word_counter(char const *s, char c)
 	return (counter);
 }
 
+//====<[ ft_strsize: ]>=========================================================
 static int	ft_strsize(char const *s, char c)
 {
 	if (*s && *s != c)
@@ -33,6 +35,7 @@ static int	ft_strsize(char const *s, char c)
 	return (0);
 }
 
+//====<[ ft_str_cpy: ]>=========================================================
 static int	ft_str_cpy(char *dst, char const *src, char c)
 {
 	int	i;
@@ -44,6 +47,7 @@ static int	ft_str_cpy(char *dst, char const *src, char c)
 	return (i);
 }
 
+//====<[ ft_split: ]>===========================================================
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
