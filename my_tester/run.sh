@@ -5,7 +5,7 @@
 #  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 #  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 #  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2025/02/19 15:42:39 by oezzaou
-#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 10:50:59 by oezzaou
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 12:24:11 by oezzaou
 #  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 #  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 #  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -63,25 +63,46 @@ rrb=`echo "${cmds}" | awk '/^rrb$/' | wc -l`
 rrr=`echo "${cmds}" | awk '/^rrr$/' | wc -l`
 ctr=`echo "${cmds}" | wc -l`
 
-printf "${RED}root${RESET}@${GREEN}oezzaou${RESET}❯${GRAY} waiting ${RESET}"
+printf "${GREEN}❯${RESET} waiting "
 for second in {1..3}; do 
   printf "."; sleep 1;
-  if [ ${second} -eq 3 ]; then
-    printf "\n";
-  fi
 done
+printf "\n\n";
 
-# echo -ne "\n"
-#
-# if [ ${nbr} -gt 1500 ]
-# then
-# 	echo -ne "\n\033[1;31m[KO]\033[1;0m :====> \033[1;32m${nbr}\033[1;0m\n"
-# 	echo -ne "It must be less than >>> 1500\n\n\033[1;31m>>>>>>>>>> FAILURE <<<<<<<<<<\033[1;0m\n\n"
-# else
-# 	echo -ne "\n\033[1;32m[OK]\033[1;0m :====> \033[1;31m${nbr}\n"
-# 	echo -ne "\n\033[1;32m<<<<<<<<<<< SUCCESS >>>>>>>>>>\033[1;0m\n\n"
-# fi
-#
-# rm file
-# echo -ne "sb :=> $sb\nra :=> $ra\nrb :=> $rb\nrr :=> $rr\npa :=> $pa\npb :=> $pb\nrra :=> $rra\nrrb :=> $rrb\nrrr :=> $rrr\n"
-# echo -ne "\033[1;32m   Made By Oussama Ezzaou :)   \033[1;0m\n"
+#=== args <ctr: instruction counter | max: max instruction> 
+print_results() {
+  echo "${GREEN}❯${RESET} sb  | ${sb}"
+  echo "${GREEN}❯${RESET} ra  | ${ra}"
+  echo "${GREEN}❯${RESET} rb  | ${rb}"
+  echo "${GREEN}❯${RESET} rr  | ${rr}"
+  echo "${GREEN}❯${RESET} pa  | ${pa}"
+  echo "${GREEN}❯${RESET} pb  | ${pb}"
+  echo "${GREEN}❯${RESET} rra | ${rra}"
+  echo "${GREEN}❯${RESET} rrb | ${rrb}"
+  echo "${GREEN}❯${RESET} rrr | ${rrr}"
+
+  if [ $1 -le $2 ]; then
+    printf "\n❯ ${GREEN}[OK] ${YELLOW}%s${RESET}\n" "Inst: $1 <= Max_Inst: $2"
+    printf "\n${GREEN}%40s${RESET}\n\n" "<<<<<<<<<<< SUCCESS >>>>>>>>>>";
+  else
+    printf "\n❯ ${RED}❯ [KO]: ${YELLOW} $1 > $2 ${RESET}\n";
+    printf "\n${RED}%40s${RESET}\n\n"   ">>>>>>>>>>> FAILURE <<<<<<<<<<";
+  fi 
+}
+
+if [ $3 -eq 3 ]; then
+  print_results ${ctr} "100"
+elif [ $3 -eq 5 ]; then
+  print_results ${ctr} "100"
+elif [ $3 -eq 100 ]; then
+  print_results ${ctr} "700"
+elif [ $3 -eq 500 ]; then
+  print_results ${ctr} "5500"
+else
+  printf "❯ ${PURPLE}Instructions counter: ${RESET}${ctr}";
+fi
+
+#=== Programmer signature: oezzaou ===
+printf "${GRAY}%19s${RESET}\n" "𓆩♕𓆪"
+printf "${GRAY}%s${RESET}\n\n" "𓄂 oussama ezzaou𓆃  "
+#===============================================================================
