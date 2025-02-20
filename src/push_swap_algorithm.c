@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ ft_guide_arr: ]>=======================================================
 int	*ft_guide_arr(t_stack *s, int flag)
 {
 	int	*guide;
@@ -36,6 +37,7 @@ int	*ft_guide_arr(t_stack *s, int flag)
 	return (guide);
 }
 
+//====<[ ft_sort_three: ]>======================================================
 void	ft_sort_three(t_stack *a, t_stack *b)
 {
 	int	max[2];
@@ -65,6 +67,7 @@ void	ft_sort_three(t_stack *a, t_stack *b)
 		ft_push(a, ft_pop(b), PA);
 }
 
+//====<[ ft_sort: ]>============================================================
 void	ft_sort(t_stack *a, t_stack *b, int stp, int flag)
 {
 	int		max[2];
@@ -91,6 +94,7 @@ void	ft_sort(t_stack *a, t_stack *b, int stp, int flag)
 	}
 }
 
+//====<[ ft_redistribution: ]>==================================================
 void	ft_redistribution(t_stack *a, t_stack *b, int range)
 {
 	int	index;

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ ft_pop: ]>=============================================================
 int	ft_pop(t_stack *s)
 {
 	if (s->top == -1)
@@ -18,6 +19,7 @@ int	ft_pop(t_stack *s)
 	return ((s->stack)[s->top--]);
 }
 
+//====<[ ft_push: ]>============================================================
 void	ft_push(t_stack *s, int elem, char *msg)
 {
 	if (s->size == s->top)
@@ -26,6 +28,7 @@ void	ft_push(t_stack *s, int elem, char *msg)
 	ft_putendl_fd(msg, STD_OUT);
 }
 
+//====<[ ft_swap: ]>============================================================
 void	ft_swap(t_stack *f, t_stack *s, char *msg)
 {
 	int	tmp;
@@ -42,6 +45,7 @@ void	ft_swap(t_stack *f, t_stack *s, char *msg)
 	ft_putendl_fd(msg, STD_OUT);
 }
 
+//====<[ ft_rotate: ]>==========================================================
 void	ft_rotate(t_stack *f, t_stack *s, char *msg)
 {
 	int	tmp;
@@ -61,6 +65,7 @@ void	ft_rotate(t_stack *f, t_stack *s, char *msg)
 	ft_putendl_fd(msg, STD_OUT);
 }
 
+//====<[ ft_rev_rotate: ]>======================================================
 void	ft_rev_rotate(t_stack *f, t_stack *s, char *msg)
 {
 	int	tmp;

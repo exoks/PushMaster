@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ main: ]>===============================================================
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -24,7 +25,7 @@ int	main(int ac, char **av)
 		return (free(a.stack), free(b.stack), EXIT_SUCCESS);
 	if (a.size > 5 && ft_check(&a, IS_STACK_REV_SORTED) <= (3 * a.size / 4))
 	{
-		ft_redistribution(&a, &b, a.size * 0.0375 + 11.75);
+		ft_redistribution(&a, &b, a.size * 0.0475 + 10.25);
 		ft_sort(&a, &b, ALL, MAX);
 		return (free(a.stack), free(b.stack), EXIT_SUCCESS);
 	}

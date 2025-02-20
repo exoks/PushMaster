@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ ft_search: ]>==========================================================
 void	ft_search(t_stack *s, int elem, int *res, int flag)
 {
 	int	tmp;
@@ -31,6 +32,7 @@ void	ft_search(t_stack *s, int elem, int *res, int flag)
 	ft_push(s, tmp, 0);
 }
 
+//====<[ ft_check: ]>===========================================================
 int	ft_check(t_stack *s, int flag)
 {
 	int	res;
@@ -43,6 +45,7 @@ int	ft_check(t_stack *s, int flag)
 	return (res);
 }
 
+//====<[ ft_count_nbrs: ]>======================================================
 int	ft_count_nbrs(char **av)
 {
 	int	i;
@@ -63,6 +66,7 @@ int	ft_count_nbrs(char **av)
 	return (count);
 }
 
+//====<[ ft_fill_stack: ]>======================================================
 int	ft_fill_stack(char **av, t_stack *b)
 {
 	char	**tab;
@@ -92,6 +96,7 @@ int	ft_fill_stack(char **av, t_stack *b)
 	return (re);
 }
 
+//====<[ ft_creat_stacks: ]>====================================================
 int	ft_creat_stacks(char **av, t_stack *a, t_stack *b)
 {
 	int		count;

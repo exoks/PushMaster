@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ ft_swap_nbrs: ]>=======================================================
 void	ft_swap_nbrs(int *a, int *b)
 {
 	int	tmp;
@@ -20,6 +21,7 @@ void	ft_swap_nbrs(int *a, int *b)
 	*b = tmp;
 }
 
+//====<[ ft_atoi_plus: ]>=======================================================
 t_ll	ft_atoi_plus(char *str)
 {
 	int		s;
@@ -38,6 +40,7 @@ t_ll	ft_atoi_plus(char *str)
 	return (nb * s);
 }
 
+//====<[ ft_get_limits: ]>======================================================
 void	ft_get_limits(t_stack *s, int *limits, int flag)
 {
 	int	tmp;
@@ -54,6 +57,7 @@ void	ft_get_limits(t_stack *s, int *limits, int flag)
 	ft_push(s, tmp, 0);
 }
 
+//====<[ ft_get_index: ]>=======================================================
 int	ft_get_index(int *s, int nbr)
 {
 	if (*s != nbr)
@@ -61,6 +65,7 @@ int	ft_get_index(int *s, int nbr)
 	return (0);
 }
 
+//====<[ ft_pick_one: ]>========================================================
 int	ft_pick_one(t_stack *s)
 {
 	int	elem;

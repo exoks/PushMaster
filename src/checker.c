@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+//====<[ Prototypes: ]>=========================================================
 char	*get_next_line(int fd);
 int		apply_instructions(char *line, t_stack *a, t_stack *b);
 
+//====<[ main: ]>===============================================================
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -39,6 +41,7 @@ int	main(int ac, char **av)
 	return (free(a.stack), free(b.stack), EXIT_SUCCESS);
 }
 
+//====<[ apply_instructions: ]>=================================================
 int	apply_instructions(char *line, t_stack *a, t_stack *b)
 {
 	if (!ft_strncmp(SA, line, ft_strlen(line)))
@@ -68,6 +71,7 @@ int	apply_instructions(char *line, t_stack *a, t_stack *b)
 	return (TRUE);
 }
 
+//====<[ get_next_line: ]>======================================================
 char	*get_next_line(int fd)
 {
 	char	c;
