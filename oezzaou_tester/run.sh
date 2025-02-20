@@ -5,7 +5,7 @@
 #  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 #  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 #  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2025/02/19 15:42:39 by oezzaou
-#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 12:55:12 by oezzaou
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 13:26:16 by oezzaou
 #  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 #  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 #  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -31,7 +31,7 @@ RESET="\033[1;0m"
 #====<[ Script: ]>==============================================================
 if [ $# -le 0 ]
 then
-	echo "${CYAN}run.sh:${RESET} Invalid args${RED}: ./run.sh [MIN] [MAX] [SIZE]"
+	echo "${CYAN}run.sh:${RESET} Invalid args:${RED} ./run.sh [MIN] [MAX] [SIZE]"
 	exit 127
 fi
 
@@ -44,13 +44,16 @@ if [ ! -f generator ]; then
   printf "${GREEN}[OK]${RESET}: ${PINK}Compiling${RESET} %-22s| ${gen_exec}\n"\
          "${gen_src}";
 fi
-echo "${GREEN}[OK]: ${CYAN}${gen_exec} ✔️${RESET}";
+echo "${GREEN}[OK]: ${CYAN}${gen_exec} ✔️${RESET}\n";
 
 #===
 rand_nbr=`./${gen_exec} $1 $2 $3`
 
 # Displaying ${rand_nbr} in form of lines 
-echo "${CYAN}${rand_nbr}${RESET}"
+echo "❯ ${PINK}Generating numbers${RESET} ... "
+echo "${CYAN}${rand_nbr}${RESET}" | awk '\
+  { for (i=1; i<=NF; i++) { printf "%s ", $i; if (i % 30 == 0) print "" } }\
+  END { printf "\n\n"}'
 
 cmds=`./${push_swap_path} ${rand_nbr}`
 ra=`echo  "${cmds}" | awk '/^ra$/'  | wc -l | tr -d ' '`
@@ -70,8 +73,8 @@ for second in {1..3}; do
 done
 printf "\n\n";
 
-#=== args <ctr: instruction counter | max: max instruction> 
-print_results() {
+#=== Print the counter of each instruction [sb..rrr] & SUM 
+print_instructions() {
   echo "${GREEN}❯${RESET} sb  | ${sb}"
   echo "${GREEN}❯${RESET} ra  | ${ra}"
   echo "${GREEN}❯${RESET} rb  | ${rb}"
@@ -81,14 +84,18 @@ print_results() {
   echo "${GREEN}❯${RESET} rra | ${rra}"
   echo "${GREEN}❯${RESET} rrb | ${rrb}"
   echo "${GREEN}❯${RESET} rrr | ${rrr}"
-  echo "${GREEN}❯${RESET} SUM | [${ctr}]"
+  echo "${GREEN}❯${RESET} SUM | [${ctr}]\n"
+}
 
+#=== args <ctr: instruction counter | max: max instruction> 
+print_results() {
+  print_instructions
   if [ $1 -le $2 ]; then
-    printf "\n❯ ${GREEN}[OK]${YELLOW}%s${RESET}\n" " [$1] <= [Max_Inst: $2]"
-    printf "\n${GREEN}%40s${RESET}\n\n" "<<<<<<<<<<< SUCCESS >>>>>>>>>>"
+    printf "❯ ${GREEN}[OK]${RESET}%s\n\n" " [$1] <= [Max_Inst: $2]"
+    printf "${GREEN}%40s${RESET}\n\n" "<<<<<<<<<<< SUCCESS >>>>>>>>>>"
   else
-    printf "\n❯ ${RED}[OK]${YELLOW}%s${RESET}\n"   " [$1] <= [Max_Inst: $2]"
-    printf "\n${RED}%40s${RESET}\n\n"   ">>>>>>>>>>> FAILURE <<<<<<<<<<"
+    printf "❯ ${RED}[OK]${RESET}%s\n\n"   " [$1] <= [Max_Inst: $2]"
+    printf "${RED}%40s${RESET}\n\n"   ">>>>>>>>>>> FAILURE <<<<<<<<<<"
   fi 
 }
 
@@ -101,7 +108,7 @@ elif [ $3 -eq 100 ]; then
 elif [ $3 -eq 500 ]; then
   print_results ${ctr} "5500"
 else
-  printf "❯ ${PINK}Instructions counter: ${RESET}${ctr}\n";
+  print_instructions
 fi
 
 #=== Programmer signature: oezzaou ===
