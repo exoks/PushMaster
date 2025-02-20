@@ -5,7 +5,7 @@
 #  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 #  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 #  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2025/02/19 15:42:39 by oezzaou
-#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 12:32:52 by oezzaou
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/20 12:36:27 by oezzaou
 #  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 #  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 #  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -52,16 +52,16 @@ rand_nbr=`./${gen_exec} $1 $2 $3`
 echo "${GREEN}${rand_nbr}${RESET}"
 
 cmds=`./${push_swap_path} ${rand_nbr}`
-ra=`echo  "${cmds}" | awk '/^ra$/'  | wc -l`
-rb=`echo  "${cmds}" | awk '/^rb$/'  | wc -l`
-rr=`echo  "${cmds}" | awk '/^rr$/'  | wc -l`
-pb=`echo  "${cmds}" | awk '/^pb$/'  | wc -l`
-pa=`echo  "${cmds}" | awk '/^pa$/'  | wc -l`
-sb=`echo  "${cmds}" | awk '/^sb$/'  | wc -l`
-rra=`echo "${cmds}" | awk '/^rra$/' | wc -l`
-rrb=`echo "${cmds}" | awk '/^rrb$/' | wc -l`
-rrr=`echo "${cmds}" | awk '/^rrr$/' | wc -l`
-ctr=`echo "${cmds}" | wc -l`
+ra=`echo  "${cmds}" | awk '/^ra$/'  | wc -l | tr -d ' '`
+rb=`echo  "${cmds}" | awk '/^rb$/'  | wc -l | tr -d ' '`
+rr=`echo  "${cmds}" | awk '/^rr$/'  | wc -l | tr -d ' '`
+pb=`echo  "${cmds}" | awk '/^pb$/'  | wc -l | tr -d ' '`
+pa=`echo  "${cmds}" | awk '/^pa$/'  | wc -l | tr -d ' '`
+sb=`echo  "${cmds}" | awk '/^sb$/'  | wc -l | tr -d ' '`
+rra=`echo "${cmds}" | awk '/^rra$/' | wc -l | tr -d ' '`
+rrb=`echo "${cmds}" | awk '/^rrb$/' | wc -l | tr -d ' '`
+rrr=`echo "${cmds}" | awk '/^rrr$/' | wc -l | tr -d ' '`
+ctr=`echo "${cmds}" | wc -l | tr -d ' '`
 
 printf "${GREEN}❯${RESET} waiting "
 for second in {1..3}; do 
@@ -99,7 +99,7 @@ elif [ $3 -eq 100 ]; then
 elif [ $3 -eq 500 ]; then
   print_results ${ctr} "5500"
 else
-  printf "❯ ${PINK}Instructions counter: ${RESET}${ctr}";
+  printf "❯ ${PINK}Instructions counter: ${RESET}${ctr}\n";
 fi
 
 #=== Programmer signature: oezzaou ===
