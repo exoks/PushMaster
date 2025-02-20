@@ -9,30 +9,30 @@
 /*   Updated: 2023/01/24 15:47:09 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//====<[ Include guards: ]>=====================================================
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+//====<[ Headers: ]>============================================================
 # include "libft.h"
 # include <limits.h>
+
+//====<[ Macros: ]>=============================================================
 # define STD_ERROR 2
 # define STD_OUT 1
 # define TRUE 1
 # define FALSE 0
 
-/*****************************
-*       FT_GUIDE FLAG        *
-******************************/
+//====<[ Flags: guide ]>==========================
 # define CREAT 11
 # define SORT 12
 
-/*****************************
-*       FT_SORT FLAGS        *
-******************************/
+//====<[ Flags: ft_sort ]>========================
 # define ALL 3
 # define SOME 4
 
-/*****************************
-*        INSTRUCTIONS        *
-******************************/
+//====<[ Instructions: ]>=========================
 # define SA "sa"
 # define SB "sb"
 # define SS "ss"
@@ -45,19 +45,16 @@
 # define RRB "rrb"
 # define RRR "rrr"
 
-/*****************************
-*    FT_GET_LIMITS FLAGS     *
-******************************/
+//====<[ Flags: ft_get_limits ]>==================
 # define MAX 5
 # define MIN 6
 
-/*****************************
-*       FT_CHECK FLAGS       *
-******************************/
+//====<[ Flags: ft_check ]>=======================
 # define IS_STACK_SORTED 10
 # define IS_STACK_REV_SORTED 11
 # define IS_ELEM_REPETITIVE 12
 
+//===<[ typedef: ]>=============================================================
 typedef long long int	t_ll;
 
 typedef struct s_stack
@@ -67,6 +64,7 @@ typedef struct s_stack
 	int			size;
 }				t_stack;
 
+//====<[ Prototypes: ]>=========================================================
 void	ft_swap_nbrs(int *a, int *b);
 t_ll	ft_atoi_plus(char *s);
 int		ft_check(t_stack *s, int flag);
@@ -84,3 +82,4 @@ int		ft_pop(t_stack *stack);
 int		ft_creat_stacks(char **av, t_stack *a, t_stack *b);
 
 #endif
+//==============================================================================
