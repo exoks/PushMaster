@@ -57,6 +57,10 @@ SRC_BNS				:= checker push_swap_process push_swap_instructions\
 OBJ_BNS 			:= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_BNS)))
 SRC_BNS				:= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_BNS)))
 
+#====<[ Tester: ]>==============================================================
+TESTER				:= ./oezzaou_tester
+SIZE					:= 100
+
 #====<[ Rules: ]>===============================================================
 all: $(NAME)
 
@@ -76,6 +80,9 @@ bonus: $(OBJ_DIR) $(CHECKER)
 $(CHECKER): $(LIBFT) | $(OBJ_BNS)
 	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
 	@echo "${GREEN}[OK]: ${CYAN}$@ ✔️${RESET}"
+
+$(OBJ_DIR): 
+	@mkdir -p $@
 
 clean:
 	@make -C $(LIBFT) fclean
@@ -103,20 +110,16 @@ fclean: clean
 re : fclean all
 
 #====<[ Rules for testing: ]>=====================
-visual:
-	./push_swap_visualizer/build/bin/visualizer
+# visual:
+# 	./push_swap_visualizer/build/bin/visualizer
 
-test:
-	@./run.sh -100 100 100
-
-tester:
-	./push_swap_tester/loop.sh 100 100
+# Run this rule with this command: make test STACK_SIZE=<INT_VALUE>
+test: all 
+	@cd oezzaou_tester && ./run.sh -999 999 $(STACK_SIZE) 
 
 #=================================================
 
-$(OBJ_DIR): 
-	@mkdir -p $@
-
 .create_dir: $(OBJ_DIR)
-.PHONY: all clean fclean re bonus visual test tester $(LIBFT)
+
+.PHONY: all clean fclean re bonus visual test $(LIBFT)
 #===============================================================================
