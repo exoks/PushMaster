@@ -66,11 +66,11 @@ all: signature $(NAME)
 
 $(NAME): $(LIBFT) | $(OBJ)
 	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
-	@echo "${GREEN}[OK]: ${CYAN}$@ ✔️${RESET}"
+	@echo "${GREEN}[OK] ${CYAN}$@ ✔️${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dir 
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-29s| $@\n" "$<"
+	@printf "$(GREEN)[OK]${RESET} ${PINK}Compiling${RESET} %-29s| $@\n" "$<"
 
 $(LIBFT):
 	@make -s -C $@ all
@@ -83,7 +83,7 @@ bonus: $(OBJ_DIR) $(CHECKER)
 
 $(CHECKER): $(LIBFT) | $(OBJ_BNS)
 	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
-	@echo "${GREEN}[OK]: ${CYAN}$@ ✔️${RESET}"
+	@echo "${GREEN}[OK] ${CYAN}$@ ✔️${RESET}"
 
 $(OBJ_DIR): 
 	@mkdir -p $@
@@ -92,22 +92,22 @@ clean:
 	@make -C $(LIBFT) fclean
 	@if [ -d $(OBJ_DIR) ]; then\
 		${RM} $(OBJ_DIR);\
-		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(OBJ_DIR) ✔️";\
 	else\
-		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-29s${RESET}| ./%s\n"\
+		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-29s${RESET}| ./%s\n"\
 					 "..." "$(PROJECT)/$(OBJ_DIR) ✖️";\
 	fi
 	
 fclean: clean
 	@if [ -f $(NAME) ]; then\
 		${RM} $(NAME);\
-		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(NAME) ✔️";\
 	fi
 	@if [ -f $(CHECKER) ]; then\
 		${RM} $(CHECKER);\
-		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(CHECKER) ✔️";\
 	fi
 
