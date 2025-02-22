@@ -62,7 +62,7 @@ TESTER				:= ./oezzaou_tester
 SIZE					:= 100
 
 #====<[ Rules: ]>===============================================================
-all: $(NAME)
+all: signature $(NAME)
 
 $(NAME): $(LIBFT) | $(OBJ)
 	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
@@ -74,6 +74,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dir
 
 $(LIBFT):
 	@make -s -C $@ all
+
+signature:
+	@printf "${GRAY}%19s${RESET}\n" "𓆩♕𓆪"
+	@printf "${GRAY}%s${RESET}\n"		"𓄂 oussama ezzaou𓆃  "
 
 bonus: $(OBJ_DIR) $(CHECKER)
 
@@ -121,5 +125,5 @@ test: all
 
 .create_dir: $(OBJ_DIR)
 
-.PHONY: all clean fclean re bonus visual test $(LIBFT)
+.PHONY: all clean fclean re bonus visual test sinature $(LIBFT)
 #===============================================================================
