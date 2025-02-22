@@ -81,7 +81,7 @@ bonus: $(OBJ_BNS)
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR) 
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-22s| $@\n" "$<"
+	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-29s| $@\n" "$<"
 
 $(OBJ_DIR):
 	@mkdir -p $@
@@ -89,20 +89,20 @@ $(OBJ_DIR):
 clean:
 	@if [ -d $(OBJ_DIR) ]; then\
 		${RM} $(OBJ_DIR);\
-		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-22s${RESET}| ./%s\n"\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(OBJ_DIR) ✔️";\
 	else\
-		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-22s${RESET}| ./%s\n"\
+		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-29s${RESET}| ./%s\n"\
 					 "..." "$(PROJECT)/$(OBJ_DIR) ✖️";\
 	fi
 
 fclean: clean
 	@if [ -f $(NAME) ]; then\
 		${RM} $(NAME);\
-		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-22s${RESET}| ./%s\n"\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-29s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(NAME) ✔️";\
 	else\
-		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-22s${RESET}| ./%s\n"\
+		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-29s${RESET}| ./%s\n"\
 					 "..." "$(PROJECT)/$(NAME) ✖️";\
 	fi
 
