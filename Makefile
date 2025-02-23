@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:46:00 by oezzaou           #+#    #+#              #
-#    Updated: 2023/01/20 03:33:07 by oezzaou          ###   ########.fr        #
+#    Updated: 2025/02/23 15:20:15 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SIZE					:= 100
 all: signature $(NAME)
 
 $(NAME): $(LIBFT) | $(OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) $| -L$(LIBFT) -lft -o $@
 	@echo "${GREEN}[OK] ${CYAN}$@ ✔️${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dir 
@@ -82,7 +82,7 @@ signature:
 bonus: $(OBJ_DIR) $(CHECKER)
 
 $(CHECKER): $(LIBFT) | $(OBJ_BNS)
-	@$(CC) $(CFLAGS) $(INCLUDE) $| $(LIBFT)/libft.a -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) $| -L$(LIBFT) -lft -o $@
 	@echo "${GREEN}[OK] ${CYAN}$@ ✔️${RESET}"
 
 $(OBJ_DIR): 
