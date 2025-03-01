@@ -59,7 +59,7 @@ SRC_BNS				:= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_BNS)))
 
 #====<[ Tester: ]>==============================================================
 TESTER				:= ./oezzaou_tester
-SIZE					:= 100
+STACK_SIZE		:= 100
 
 #====<[ Rules: ]>===============================================================
 all: signature $(NAME)
