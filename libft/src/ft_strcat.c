@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 21:16:13 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/10/05 13:43:12 by oezzaou          ###   ########.fr       */
+/*   Created: 2022/09/29 21:27:56 by oezzaou           #+#    #+#             */
+/*   Updated: 2025/03/01 12:15:40 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-//====<[ ft_strlen: ]>==========================================================
-size_t	ft_strlen(const char *s)
+//====<[ ft_strcat: ]>==========================================================
+char	*ft_strcat(char *dst, char *src)
 {
-  int len;
+	int	i;
 
-  len = -1;
-  while (s[++len] != '\0')
-    ;
-  return (len);
+	i = -1;
+	while (dst[++i])
+		;
+	while (*src)
+		dst[i++] = *(src++);
+	dst[i] = 0;
+	return (dst);
 }
-// size_t	ft_strlen(const char *s)
-// {
-// 	if (s == NULL)
-// 		return (-1);
-// 	if (*s)
-// 		return (1 + ft_strlen(++s));
-// 	return (0);
-// }

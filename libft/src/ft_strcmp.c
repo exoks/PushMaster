@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 21:16:13 by oezzaou           #+#    #+#             */
-/*   Updated: 2022/10/05 13:43:12 by oezzaou          ###   ########.fr       */
+/*   Created: 2025/02/23 09:04:12 by oezzaou           #+#    #+#             */
+/*   Updated: 2025/03/01 12:16:57 by oezzaou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-//====<[ ft_strlen: ]>==========================================================
-size_t	ft_strlen(const char *s)
+//====<[ ft_strcmp: ]>==========================================================
+int	ft_strcmp(const char *s1, const char *s2)
 {
-  int len;
+	int	index;
 
-  len = -1;
-  while (s[++len] != '\0')
-    ;
-  return (len);
+	if (!s1 || !s2)
+		return (-1);
+	index = 0;
+	while (s1[index] && s1[index] == s2[index])
+		index++;
+	return (s1[index] - s2[index]);
 }
-// size_t	ft_strlen(const char *s)
-// {
-// 	if (s == NULL)
-// 		return (-1);
-// 	if (*s)
-// 		return (1 + ft_strlen(++s));
-// 	return (0);
-// }
