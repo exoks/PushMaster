@@ -46,7 +46,7 @@ LIBFT					:= libft
 SRC_DIR				:= src
 OBJ_DIR				:= obj
 INCLUDE				:= -Iinclude -I$(LIBFT)/include
-SRC						:= push_swap push_swap_process push_swap_instructions\
+SRC						:= push_swap push_swap_parser push_swap_instructions\
 								 push_swap_algorithm push_swap_utils
 OBJ						:= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC)))
 SRC						:= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
