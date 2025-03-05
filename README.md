@@ -1,10 +1,20 @@
 # push_swap #
 
-The push_swap is a 1337 (42 network) project, It is about ***creating an efficient sorting algorithm*** using a limited set of moves.
+The push_swap is a 1337 (42 network) project, It is about ***creating an efficient sorting algorithm*** using a limited set of instructions.
 
 The challenge is to ***sort a stack of integers*** with the ***fewest*** possible operations, including ***push***, ***swap***, and ***rotate***. This project focuses on **algorithm optimization**, **stack manipulation**, and **solving complex problems** with **limited resources**.
 
-To **improve** and **optimize my algorithm**, I also ***created my own tester*** (*using bash script and C language*), which helps me analyze performance and reduce the number of moves needed for sorting.
+To **improve** and **optimize my algorithm**, I also **created my own tester | `oezzaou_tester`** (*using bash script and C language*), which helps me analyze performance and reduce the number of moves needed for sorting.
+
+* Test my push_swap
+``` bash
+./push_swap nbr1 nbr2 ... nbrN
+```
+- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
+
+**Example Output**:
+
+[<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/364d2474-6e2c-4de1-b35d-38fff4d2faa7"/> ]()
 
 ## `oezzaou_tester` | Test Your Sorting Algorithm ##
 If you want to create your own **sorting algorithm**, `oezzaou_tester` will help you **analyze** and **improve** it. This tool **generates random numbers** and **counts every move** your algorithm makes, helping you understand its efficiency.
@@ -18,7 +28,7 @@ test: all
 ```
 3 - Run the tester with:
 ```bash
-make test STACK_SIZE=<Integer_value>
+make test STACK_SIZE=<Integer_Value>
 ```
 Example Output:
 
