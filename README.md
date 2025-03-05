@@ -6,15 +6,12 @@ The challenge is to ***sort a stack of integers*** with the ***fewest*** possibl
 
 To **improve** and **optimize my algorithm**, I also **created my own tester | `oezzaou_tester`** (*using bash script and C language*), which helps me analyze performance and reduce the number of moves needed for sorting.
 
-* Test my push_swap
+**Test my push_swap**
 ``` bash
 ./push_swap nbr1 nbr2 ... nbrN
 ```
+
 - It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
-
-**Example Output**:
-
-[<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/364d2474-6e2c-4de1-b35d-38fff4d2faa7"/> ]()
 
 ## `oezzaou_tester` | Test Your Sorting Algorithm ##
 If you want to create your own **sorting algorithm**, `oezzaou_tester` will help you **analyze** and **improve** it. This tool **generates random numbers** and **counts every move** your algorithm makes, helping you understand its efficiency.
