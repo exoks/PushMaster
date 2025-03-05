@@ -1,6 +1,6 @@
-# push_swap #
+# PushMaster #
 
-The push_swap is a 1337 (42 network) project, It is about ***creating an efficient sorting algorithm*** using a limited set of instructions.
+The PushMaster is a 1337 (42 network) project, It is about ***creating an efficient sorting algorithm*** using a limited set of instructions.
 
 The challenge is to ***sort a stack of integers*** with the ***fewest*** possible operations, including ***push***, ***swap***, and ***rotate***. This project focuses on **algorithm optimization**, **stack manipulation**, and **solving complex problems** with **limited resources**.
 
