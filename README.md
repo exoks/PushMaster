@@ -21,6 +21,7 @@ make
 ``` bash
 ./push_swap nbr1 nbr2 ... nbrN
 ```
+- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
 
 ### **Cleanup** ###
 * Remove object files:
@@ -32,8 +33,6 @@ make clean
 ```sh
 make fclean
 ```
-
-- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
 
 ## `oezzaou_tester` | Test Your Sorting Algorithm ##
 If you want to create your own **sorting algorithm**, `oezzaou_tester` will help you **analyze** and **improve** it. This tool **generates random numbers** and **counts every move** your algorithm makes, helping you understand its efficiency.
