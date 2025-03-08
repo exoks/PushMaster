@@ -13,7 +13,7 @@ git clone https://github.com/exoks/PushMaster.git
 cd PushMaster
 ```
 
-2. Compile the `push_swap` executable:
+2. Compile the **PushMaster** :
 ```bash
 make
 ```
