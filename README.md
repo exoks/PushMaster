@@ -13,7 +13,7 @@ git clone https://github.com/exoks/PushMaster.git
 cd PushMaster
 ```
 
-2. Compile the **PushMaster** :
+2. Compile the **PushMaster** project :
 ```bash
 make
 ```
@@ -21,7 +21,6 @@ make
 ``` bash
 ./push_swap nbr1 nbr2 ... nbrN
 ```
-- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
 
 **Example Output**:
 [<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/364d2474-6e2c-4de1-b35d-38fff4d2faa7"/> ]()
@@ -42,7 +41,7 @@ make fclean
 ## `oezzaou_tester` | Test Your Sorting Algorithm ##
 If you want to create your own **sorting algorithm**, `oezzaou_tester` will help you **analyze** and **improve** it. This tool **generates random numbers** and **counts every move** your algorithm makes, helping you understand its efficiency.
 
-1 - Copy `oezzaou_tester` into your **pushMaster** project folder.. 
+1 - Copy `oezzaou_tester` into your **push_swap** project folder.. 
 
 2 - Add this rule to your `Makefile`:
 ```Makefile
