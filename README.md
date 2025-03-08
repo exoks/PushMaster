@@ -22,6 +22,11 @@ make
 ./push_swap nbr1 nbr2 ... nbrN
 ```
 
+**Example Output**:
+[<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/364d2474-6e2c-4de1-b35d-38fff4d2faa7"/> ]()
+
+- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
+
 ### **Cleanup** ###
 * Remove object files:
 ```sh
@@ -33,14 +38,12 @@ make clean
 make fclean
 ```
 
-- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
-
 ## `oezzaou_tester` | Test Your Sorting Algorithm ##
 If you want to create your own **sorting algorithm**, `oezzaou_tester` will help you **analyze** and **improve** it. This tool **generates random numbers** and **counts every move** your algorithm makes, helping you understand its efficiency.
 
-1 - Copy `oezzaou_tester` into your pushMaster project folder.. 
+1 - Copy `oezzaou_tester` into your **pushMaster** project folder.. 
 
-2 - Add this rule to your Makefile:
+2 - Add this rule to your `Makefile`:
 ```Makefile
 test: all 
 	@cd oezzaou_tester && ./run.sh -999 999 $(STACK_SIZE) 
