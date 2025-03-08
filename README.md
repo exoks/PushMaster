@@ -13,7 +13,7 @@ git clone https://github.com/exoks/PushMaster.git
 cd PushMaster
 ```
 
-2. Compile the `push_swap` executable:
+2. Compile the **PushMaster** :
 ```bash
 make
 ```
@@ -21,6 +21,7 @@ make
 ``` bash
 ./push_swap nbr1 nbr2 ... nbrN
 ```
+- It prints the instructions used to sort a stack of {nbr1, nbr2, …, nbrN}.
 
 **Example Output**:
 [<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/364d2474-6e2c-4de1-b35d-38fff4d2faa7"/> ]()
